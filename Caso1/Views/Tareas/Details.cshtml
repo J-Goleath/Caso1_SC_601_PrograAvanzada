@@ -1,0 +1,41 @@
+@model Caso1.Entities.Tarea
+@{
+    ViewBag.Title = "Detalle de Tarea";
+}
+
+<div class="container mt-4">
+    <h2>Detalle de Tarea</h2>
+    <hr />
+
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(m => m.Titulo)</dt>
+        <dd>@Html.DisplayFor(m => m.Titulo)</dd>
+
+        <dt>@Html.DisplayNameFor(m => m.Detalle)</dt>
+        <dd>@Html.DisplayFor(m => m.Detalle)</dd>
+
+        <dt>@Html.DisplayNameFor(m => m.FechaHora)</dt>
+        <dd>@Model.FechaHora.ToString("dd/MM/yyyy HH:mm")</dd>
+
+        <dt>@Html.DisplayNameFor(m => m.Estado)</dt>
+        <dd>
+            @{
+                string badge = "default";
+                string label = Model.Estado.ToString();
+                switch (Model.Estado)
+                {
+                    case Caso1.Entities.EstadoTarea.Pendiente:   badge = "warning";  label = "Pendiente";   break;
+                    case Caso1.Entities.EstadoTarea.EnProceso:   badge = "info";     label = "En Proceso";  break;
+                    case Caso1.Entities.EstadoTarea.Completada:  badge = "success";  label = "Completada";  break;
+                    case Caso1.Entities.EstadoTarea.Cancelada:   badge = "danger";   label = "Cancelada";   break;
+                }
+            }
+            <span class="label label-@badge">@label</span>
+        </dd>
+    </dl>
+
+    <div class="mt-3">
+        @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-default" })
+    </div>
+</div>

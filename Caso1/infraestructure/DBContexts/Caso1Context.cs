@@ -12,6 +12,7 @@ namespace Caso1.infraestructure.DBContexts
         public Caso1Context() : base("name=Caso1DB") { }
 
         public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Tarea> Tareas { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

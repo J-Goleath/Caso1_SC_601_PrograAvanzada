@@ -1,7 +1,32 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Caso1\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\allis\\Caso1_SC_601_PrograAvanzada\\Caso1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|c:\\users\\allis\\caso1_sc_601_prograavanzada\\caso1\\views\\tareas\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|solutionrelative:views\\tareas\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|c:\\users\\allis\\caso1_sc_601_prograavanzada\\caso1\\views\\tareas\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|solutionrelative:views\\tareas\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|c:\\users\\allis\\caso1_sc_601_prograavanzada\\caso1\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|c:\\users\\allis\\caso1_sc_601_prograavanzada\\caso1\\migrations\\202606230525269_addtareastable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|solutionrelative:migrations\\202606230525269_addtareastable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|c:\\users\\allis\\caso1_sc_601_prograavanzada\\caso1\\infraestructure\\dbcontexts\\caso1context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|solutionrelative:infraestructure\\dbcontexts\\caso1context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|c:\\users\\allis\\caso1_sc_601_prograavanzada\\caso1\\infraestructure\\repositories\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|solutionrelative:infraestructure\\repositories\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +34,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "C:\\Users\\allis\\Caso1_SC_601_PrograAvanzada\\Caso1\\Views\\Tareas\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Views\\Tareas\\Delete.cshtml",
+              "ToolTip": "C:\\Users\\allis\\Caso1_SC_601_PrograAvanzada\\Caso1\\Views\\Tareas\\Delete.cshtml*",
+              "RelativeToolTip": "Views\\Tareas\\Delete.cshtml*",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAAA4AAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-23T05:32:12.169Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -26,6 +64,71 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\allis\\Caso1_SC_601_PrograAvanzada\\Caso1\\Views\\Tareas\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Tareas\\Index.cshtml",
+              "ToolTip": "C:\\Users\\allis\\Caso1_SC_601_PrograAvanzada\\Caso1\\Views\\Tareas\\Index.cshtml",
+              "RelativeToolTip": "Views\\Tareas\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-23T05:35:40.266Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\allis\\Caso1_SC_601_PrograAvanzada\\Caso1\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\allis\\Caso1_SC_601_PrograAvanzada\\Caso1\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAACEAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-23T05:27:23.982Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "202606230525269_AddTareasTable.cs",
+              "DocumentMoniker": "C:\\Users\\allis\\Caso1_SC_601_PrograAvanzada\\Caso1\\Migrations\\202606230525269_AddTareasTable.cs",
+              "RelativeDocumentMoniker": "Migrations\\202606230525269_AddTareasTable.cs",
+              "ToolTip": "C:\\Users\\allis\\Caso1_SC_601_PrograAvanzada\\Caso1\\Migrations\\202606230525269_AddTareasTable.cs",
+              "RelativeToolTip": "Migrations\\202606230525269_AddTareasTable.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-23T05:25:32.741Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Caso1Context.cs",
+              "DocumentMoniker": "C:\\Users\\allis\\Caso1_SC_601_PrograAvanzada\\Caso1\\infraestructure\\DBContexts\\Caso1Context.cs",
+              "RelativeDocumentMoniker": "infraestructure\\DBContexts\\Caso1Context.cs",
+              "ToolTip": "C:\\Users\\allis\\Caso1_SC_601_PrograAvanzada\\Caso1\\infraestructure\\DBContexts\\Caso1Context.cs",
+              "RelativeToolTip": "infraestructure\\DBContexts\\Caso1Context.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAAAA4AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-23T05:24:03.318Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "C:\\Users\\allis\\Caso1_SC_601_PrograAvanzada\\Caso1\\infraestructure\\Repositories\\IRepository.cs",
+              "RelativeDocumentMoniker": "infraestructure\\Repositories\\IRepository.cs",
+              "ToolTip": "C:\\Users\\allis\\Caso1_SC_601_PrograAvanzada\\Caso1\\infraestructure\\Repositories\\IRepository.cs",
+              "RelativeToolTip": "infraestructure\\Repositories\\IRepository.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-23T05:06:47.496Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -1,17 +1,101 @@
-﻿@{
-    Layout = null;
+﻿@using Caso1.Entities;
+@model IEnumerable<Prioridad>
+
+@{
+    ViewBag.Title = "Prioridades Registradas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+<div class="container mt-4">
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
+    @if (TempData["MensajeExito"] != null)
+    {
+        <div id="mensajeExito" class="alert alert-success fade show">
+            @TempData["MensajeExito"]
+        </div>
+    }
+
+    @if (TempData["MensajeError"] != null)
+    {
+        <div id="mensajeError" class="alert alert-danger fade show">
+            @TempData["MensajeError"]
+        </div>
+    }
+
+    <div class="card shadow">
+        <div class="card-header bg-dark text-white">
+            Prioridades Registradas
+        </div>
+        <div class="card-body">
+            @Html.ActionLink(
+                "Registrar nueva Prioridad",
+                "Create",
+                null,
+                new { @class = "btn btn-primary mb-3" })
+
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Fecha de Creación</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var prioridad in Model.Where(p => !p.Borrado))
+                    {
+                        <tr>
+                            <td>@prioridad.Id</td>
+                            <td>@prioridad.Nombre</td>
+                            <td>@prioridad.Descripcion</td>
+                            <td>@prioridad.FechaCreacion.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>
+                                @Html.ActionLink(
+                                    "Detalles",
+                                    "Details",
+                                    new { id = prioridad.Id },
+                                    new { @class = "btn btn-info btn-sm" })
+
+                                @Html.ActionLink(
+                                    "Editar",
+                                    "Edit",
+                                    new { id = prioridad.Id },
+                                    new { @class = "btn btn-warning btn-sm" })
+
+                                @using (Html.BeginForm("Delete", "Prioridades", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.Hidden("id", prioridad.Id)
+                                    <button type="submit" class="btn btn-danger btn-sm"
+                                            onclick="return confirm('¿Está seguro de eliminar esta prioridad?')">
+                                        Eliminar
+                                    </button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
-</body>
-</html>
+</div>
+
+<script>
+    function desplegarMensaje(nombreMensaje) {
+        const mensaje = document.getElementById(nombreMensaje);
+
+        if (mensaje) {
+            mensaje.style.transition = "opacity 1.5s";
+
+            setTimeout(function () {
+                mensaje.style.opacity = "0";
+                mensaje.remove();
+            }, 3000);
+        }
+    }
+
+    desplegarMensaje("mensajeExito");
+    desplegarMensaje("mensajeError");
+</script>

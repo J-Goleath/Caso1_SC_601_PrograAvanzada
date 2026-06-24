@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Caso1.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Caso1.infraestructure.Repositories
 {
-    public class IPrioridadRepository
+    public interface IPrioridadRepository : IRepository<Prioridad>
     {
+        IEnumerable<Prioridad> GetPrioridadesActivas();
+        bool ExistePrioridadConNombre(string nombre);
     }
 }

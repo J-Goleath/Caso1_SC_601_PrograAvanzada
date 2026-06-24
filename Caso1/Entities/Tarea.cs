@@ -12,7 +12,7 @@ namespace Caso1.Entities
         Cancelada = 3
     }
 
-    [Table("Tareas")]
+  
     public class Tarea
     {
         [Key]

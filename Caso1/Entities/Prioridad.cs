@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Caso1.Entities
 {
-    [Table("Prioridades")]
+   
     public class Prioridad
     {
         [Key]

@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Caso1.Entities
 {
-    [Table("Categorias")]
+ 
     public class Categoria
     {
         [Key]

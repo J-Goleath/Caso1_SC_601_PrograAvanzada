@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\U\\SC-601 Programacio\u0301n avanzada\\Caso1_SC_601_PrograAvanzada\\Caso1\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|d:\\u\\sc-601 programacio\u0301n avanzada\\caso1_sc_601_prograavanzada\\caso1\\filters\\globalexceptionfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|solutionrelative:filters\\globalexceptionfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|d:\\u\\sc-601 programacio\u0301n avanzada\\caso1_sc_601_prograavanzada\\caso1\\logging\\app-20260626_100132.log||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|solutionrelative:logging\\app-20260626_100132.log||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,6 +35,32 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GlobalExceptionFilter.cs",
+              "DocumentMoniker": "D:\\U\\SC-601 Programacio\u0301n avanzada\\Caso1_SC_601_PrograAvanzada\\Caso1\\Filters\\GlobalExceptionFilter.cs",
+              "RelativeDocumentMoniker": "Filters\\GlobalExceptionFilter.cs",
+              "ToolTip": "D:\\U\\SC-601 Programacio\u0301n avanzada\\Caso1_SC_601_PrograAvanzada\\Caso1\\Filters\\GlobalExceptionFilter.cs",
+              "RelativeToolTip": "Filters\\GlobalExceptionFilter.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB8AAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-26T16:29:06.313Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "app-20260626_100132.log",
+              "DocumentMoniker": "D:\\U\\SC-601 Programacio\u0301n avanzada\\Caso1_SC_601_PrograAvanzada\\Caso1\\Logging\\app-20260626_100132.log",
+              "RelativeDocumentMoniker": "Logging\\app-20260626_100132.log",
+              "ToolTip": "D:\\U\\SC-601 Programacio\u0301n avanzada\\Caso1_SC_601_PrograAvanzada\\Caso1\\Logging\\app-20260626_100132.log",
+              "RelativeToolTip": "Logging\\app-20260626_100132.log",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-06-26T16:26:26.17Z",
+              "EditorCaption": ""
             }
           ]
         }

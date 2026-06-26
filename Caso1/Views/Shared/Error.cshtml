@@ -1,14 +1,32 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
-</head>
-<body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>Error al procesar la solicitud.</h2>
-    </hgroup>
-</body>
-</html>
+@model HandleErrorInfo
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center">
+
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h2 class="panel-title">
+                        <i class="glyphicon glyphicon-warning-sign"></i>
+                        Ocurrió un error inesperado
+                    </h2>
+                </div>
+                <div class="panel-body">
+                    <p class="lead">
+                        Lo sentimos, algo salió mal. El equipo técnico ha sido notificado.
+                    </p>
+                    <p class="text-muted">
+                        Si el problema persiste, por favor contacte al administrador del sistema.
+                    </p>
+                    @Html.ActionLink("Volver al inicio", "Index", "Home",
+                        null, new { @class = "btn btn-primary btn-lg mt-3" })
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

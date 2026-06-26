@@ -43,13 +43,13 @@ namespace Caso1.Controllers
             {
                 if (_repository.ExisteCategoriaConNombre(categoria.Nombre))
                 {
-                    ModelState.AddModelError("Nombre", "Ya existe una categoría con este nombre");
+                    ModelState.AddModelError("Nombre", "Ya existe una categoria con este nombre");
                     return View(categoria);
                 }
 
                 categoria.FechaCreacion = DateTime.Now;
                 _repository.Add(categoria);
-                TempData["MensajeExito"] = "Categoría registrada correctamente";
+                TempData["MensajeExito"] = "Categoria registrada correctamente";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -62,7 +62,7 @@ namespace Caso1.Controllers
             var model = _repository.GetById(id);
             if (model == null || model.Borrado)
             {
-                TempData["MensajeError"] = "La categoría no existe";
+                TempData["MensajeError"] = "La categoria no existe";
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
@@ -74,7 +74,7 @@ namespace Caso1.Controllers
             var model = _repository.GetById(id);
             if (model == null || model.Borrado)
             {
-                TempData["MensajeError"] = "La categoría no existe";
+                TempData["MensajeError"] = "La categoria no existe";
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
@@ -91,7 +91,7 @@ namespace Caso1.Controllers
 
                 if (existe && actual != null && actual.Nombre != categoria.Nombre)
                 {
-                    ModelState.AddModelError("Nombre", "Ya existe otra categoría con este nombre");
+                    ModelState.AddModelError("Nombre", "Ya existe otra categoria con este nombre");
                     return View(categoria);
                 }
 
@@ -103,7 +103,7 @@ namespace Caso1.Controllers
                 }
 
                 _repository.Update(categoria);
-                TempData["MensajeExito"] = "Categoría actualizada correctamente";
+                TempData["MensajeExito"] = "Categoria actualizada correctamente";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -119,11 +119,11 @@ namespace Caso1.Controllers
             {
                 model.Borrado = true;
                 _repository.Update(model);
-                TempData["MensajeExito"] = "Categoría eliminada correctamente";
+                TempData["MensajeExito"] = "Categoria eliminada correctamente";
                 return RedirectToAction(nameof(Index));
             }
 
-            TempData["MensajeError"] = "La categoría no existe";
+            TempData["MensajeError"] = "La categoria no existe";
             return RedirectToAction(nameof(Index));
         }
     }

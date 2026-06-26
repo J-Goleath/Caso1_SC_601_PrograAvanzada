@@ -1,36 +1,40 @@
 @model Caso1.Entities.Tarea
+
 @{
     ViewBag.Title = "Eliminar Tarea";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container mt-4">
-    <h2>Eliminar Tarea</h2>
-    <hr />
-
-    <div class="alert alert-warning">
-        <strong>Esta seguro de que desea eliminar esta tarea?</strong>
-    </div>
-
-    <dl class="dl-horizontal">
-        <dt>@Html.DisplayNameFor(m => m.Titulo)</dt>
-        <dd>@Html.DisplayFor(m => m.Titulo)</dd>
-
-        <dt>@Html.DisplayNameFor(m => m.Detalle)</dt>
-        <dd>@Html.DisplayFor(m => m.Detalle)</dd>
-
-        <dt>@Html.DisplayNameFor(m => m.FechaHora)</dt>
-        <dd>@Model.FechaHora.ToString("dd/MM/yyyy HH:mm")</dd>
-
-        <dt>@Html.DisplayNameFor(m => m.Estado)</dt>
-        <dd>@Model.Estado</dd>
-    </dl>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        <div class="mt-3">
-            <button type="submit" class="btn btn-danger">Si, eliminar</button>
-            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
+    <div class="card shadow">
+        <div class="card-header bg-dark text-white">
+            Eliminar Tarea
         </div>
-    }
+        <div class="card-body">
+            <div class="alert alert-warning">
+                ¿Está seguro de que desea eliminar la tarea <strong>@Model.Titulo</strong>?
+            </div>
+
+            <dl class="row">
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Titulo)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Titulo)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Detalle)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Detalle)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.FechaHora)</dt>
+                <dd class="col-sm-9">@Model.FechaHora.ToString("dd/MM/yyyy HH:mm")</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Estado)</dt>
+                <dd class="col-sm-9">@Model.Estado</dd>
+            </dl>
+
+            @using (Html.BeginForm("DeleteConfirmed", "Tareas", new { id = Model.Id }, FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+                @Html.ActionLink("No, cancelar", "Index", null, new { @class = "btn btn-secondary" })
+            }
+        </div>
+    </div>
 </div>

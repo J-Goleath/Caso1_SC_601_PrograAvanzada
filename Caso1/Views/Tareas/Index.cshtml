@@ -1,79 +1,107 @@
-@model IEnumerable<Caso1.Entities.Tarea>
+@using Caso1.Entities;
+@model IEnumerable<Tarea>
+
 @{
-    ViewBag.Title = "Tareas";
+    ViewBag.Title = "Tareas Registradas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2><i class="glyphicon glyphicon-tasks"></i> Tareas</h2>
-        @Html.ActionLink("Nueva Tarea", "Create", null, new { @class = "btn btn-primary" })
-    </div>
 
     @if (TempData["Exito"] != null)
     {
-        <div class="alert alert-success alert-dismissible auto-dismiss" role="alert">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <div id="mensajeExito" class="alert alert-success fade show">
             @TempData["Exito"]
         </div>
     }
+
     @if (TempData["Error"] != null)
     {
-        <div class="alert alert-danger alert-dismissible auto-dismiss" role="alert">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <div id="mensajeError" class="alert alert-danger fade show">
             @TempData["Error"]
         </div>
     }
 
-    <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Titulo</th>
-                    <th>Fecha y Hora</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var tarea in Model)
-                {
+    <div class="card shadow">
+        <div class="card-header bg-dark text-white">
+            Tareas Registradas
+        </div>
+        <div class="card-body">
+            @Html.ActionLink(
+                     "Registrar nueva Tarea",
+                     "Create",
+                     null,
+                     new { @class = "btn btn-primary mb-3" })
+
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
                     <tr>
-                        <td>@tarea.Titulo</td>
-                        <td>@tarea.FechaHora.ToString("dd/MM/yyyy HH:mm")</td>
-                        <td>
-                            @{
-                                string badge = "default";
-                                string label = tarea.Estado.ToString();
-                                switch (tarea.Estado)
-                                {
-                                    case Caso1.Entities.EstadoTarea.Pendiente:   badge = "warning";  label = "Pendiente";   break;
-                                    case Caso1.Entities.EstadoTarea.EnProceso:   badge = "info";     label = "En Proceso";  break;
-                                    case Caso1.Entities.EstadoTarea.Completada:  badge = "success";  label = "Completada";  break;
-                                    case Caso1.Entities.EstadoTarea.Cancelada:   badge = "danger";   label = "Cancelada";   break;
+                        <th>ID</th>
+                        <th>Titulo</th>
+                        <th>Fecha y Hora</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var tarea in Model.Where(t => !t.Borrado))
+                    {
+                        <tr>
+                            <td>@tarea.Id</td>
+                            <td>@tarea.Titulo</td>
+                            <td>@tarea.FechaHora.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>
+                                @{
+                                    string badge = "secondary";
+                                    string label = tarea.Estado.ToString();
+                                    switch (tarea.Estado)
+                                    {
+                                        case EstadoTarea.Pendiente: badge = "warning"; label = "Pendiente"; break;
+                                        case EstadoTarea.EnProceso: badge = "info"; label = "En Proceso"; break;
+                                        case EstadoTarea.Completada: badge = "success"; label = "Completada"; break;
+                                        case EstadoTarea.Cancelada: badge = "danger"; label = "Cancelada"; break;
+                                    }
                                 }
-                            }
-                            <span class="label label-@badge">@label</span>
-                        </td>
-                        <td>
-                            @Html.ActionLink("Ver", "Details", new { id = tarea.Id }, new { @class = "btn btn-xs btn-default" })
-                            @Html.ActionLink("Editar", "Edit", new { id = tarea.Id }, new { @class = "btn btn-xs btn-primary" })
-                            @Html.ActionLink("Eliminar", "Delete", new { id = tarea.Id }, new { @class = "btn btn-xs btn-danger" })
-                        </td>
-                    </tr>
-                }
-                @if (!Model.Any())
-                {
-                    <tr>
-                        <td colspan="4" class="text-center text-muted">No hay tareas registradas.</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                                <span class="badge badge-@badge">@label</span>
+                            </td>
+                            <td>
+                                @Html.ActionLink(
+                                         "Detalles",
+                                         "Details",
+                                         new { id = tarea.Id },
+                                         new { @class = "btn btn-info btn-sm" })
+
+                                @Html.ActionLink(
+                                         "Editar",
+                                         "Edit",
+                                         new { id = tarea.Id },
+                                         new { @class = "btn btn-warning btn-sm" })
+
+                                @Html.ActionLink(
+                                         "Eliminar",
+                                         "Delete",
+                                         new { id = tarea.Id },
+                                         new { @class = "btn btn-danger btn-sm" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
 <script>
-    setTimeout(function () {
-        $('.auto-dismiss').fadeOut('slow');
-    }, 4000);
+    function desplegarMensaje(nombreMensaje) {
+        const mensaje = document.getElementById(nombreMensaje);
+        if (mensaje) {
+            mensaje.style.transition = "opacity 1.5s";
+            setTimeout(function () {
+                mensaje.style.opacity = "0";
+                mensaje.remove();
+            }, 3000);
+        }
+    }
+    desplegarMensaje("mensajeExito");
+    desplegarMensaje("mensajeError");
 </script>

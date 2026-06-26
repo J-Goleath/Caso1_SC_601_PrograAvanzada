@@ -1,9 +1,7 @@
 ﻿namespace Caso1.Migrations
 {
-    using System;
-    using System.Data.Entity;
+    using Caso1.Entities;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Caso1.infraestructure.DBContexts.Caso1Context>
     {
@@ -14,10 +12,12 @@
 
         protected override void Seed(Caso1.infraestructure.DBContexts.Caso1Context context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data.
+            context.Estados.AddOrUpdate(e => e.Nombre,
+                new Estado { Nombre = "Pendiente", Descripcion = "Tarea aún no iniciada.", Orden = 1, Activo = true },
+                new Estado { Nombre = "En Proceso", Descripcion = "Tarea en ejecución.", Orden = 2, Activo = true },
+                new Estado { Nombre = "Completada", Descripcion = "Tarea finalizada con éxito.", Orden = 3, Activo = true },
+                new Estado { Nombre = "Cancelada", Descripcion = "Tarea cancelada sin completar.", Orden = 4, Activo = true }
+            );
         }
     }
 }

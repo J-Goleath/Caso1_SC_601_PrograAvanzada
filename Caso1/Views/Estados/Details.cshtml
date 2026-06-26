@@ -1,19 +1,19 @@
-@model Caso1.Entities.Categoria
+@model Caso1.Entities.Estado
 
 @{
-    ViewBag.Title = "Detalles de Categoria";
+    ViewBag.Title = "Detalles del Estado";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container mt-4">
     <div class="card shadow">
         <div class="card-header bg-dark text-white">
-            Detalles de la Categoría
+            Detalles del Estado
         </div>
         <div class="card-body">
             <dl class="row">
-                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Id)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.Id)</dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.EstadoId)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.EstadoId)</dd>
 
                 <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Nombre)</dt>
                 <dd class="col-sm-9">@Html.DisplayFor(model => model.Nombre)</dd>
@@ -21,12 +21,15 @@
                 <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Descripcion)</dt>
                 <dd class="col-sm-9">@Html.DisplayFor(model => model.Descripcion)</dd>
 
-                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.FechaCreacion)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.FechaCreacion)</dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Orden)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Orden)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Activo)</dt>
+                <dd class="col-sm-9">@(Model.Activo ? "Si" : "No")</dd>
             </dl>
 
             <div class="form-group mt-3">
-                @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Editar", "Edit", new { id = Model.EstadoId }, new { @class = "btn btn-warning" })
                 @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-secondary" })
             </div>
         </div>

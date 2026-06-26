@@ -1,0 +1,37 @@
+@model Caso1.Entities.Estado
+
+@{
+    ViewBag.Title = "Eliminar Estado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-dark text-white">
+            Eliminar Estado
+        </div>
+        <div class="card-body">
+            <div class="alert alert-warning">
+                ¿Está seguro de que desea eliminar el estado <strong>@Model.Nombre</strong>?
+            </div>
+
+            <dl class="row">
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Nombre)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Nombre)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Descripcion)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Descripcion)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Orden)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Orden)</dd>
+            </dl>
+
+            @using (Html.BeginForm("DeleteConfirmed", "Estados", new { id = Model.EstadoId }, FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+                @Html.ActionLink("No, cancelar", "Index", null, new { @class = "btn btn-secondary" })
+            }
+        </div>
+    </div>
+</div>

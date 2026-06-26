@@ -13,7 +13,7 @@ namespace Caso1.Entities
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "El nombre de la categoría es obligatorio")]
+        [Required(ErrorMessage = "El nombre de la categoria es obligatorio")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "El nombre debe tener entre 3 y 100 caracteres")]
         [Display(Name = "Nombre de la Categoría")]
         public string Nombre { get; set; }
@@ -23,7 +23,7 @@ namespace Caso1.Entities
         [Display(Name = "Descripción")]
         public string Descripcion { get; set; }
 
-        [Display(Name = "Fecha de Creación")]
+        [Display(Name = "Fecha de Creacion")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime FechaCreacion { get; set; }

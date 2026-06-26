@@ -2,7 +2,7 @@
 @model IEnumerable<Categoria>
 
 @{
-    ViewBag.Title = "Categorías Registradas";
+    ViewBag.Title = "Categorias Registradas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -28,7 +28,7 @@
         </div>
         <div class="card-body">
             @Html.ActionLink(
-                "Registrar nueva Categoría",
+                "Registrar nueva Categoria",
                 "Create",
                 null,
                 new { @class = "btn btn-primary mb-3" })
@@ -39,7 +39,7 @@
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Descripción</th>
-                        <th>Fecha de Creación</th>
+                        <th>Fecha de Creacion</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -69,7 +69,7 @@
                                     @Html.AntiForgeryToken()
                                     @Html.Hidden("id", categoria.Id)
                                     <button type="submit" class="btn btn-danger btn-sm"
-                                            onclick="return confirm('¿Está seguro de eliminar esta categoría?')">
+                                            onclick="return confirm('¿Esta seguro de eliminar esta categoria?')">
                                         Eliminar
                                     </button>
                                 }

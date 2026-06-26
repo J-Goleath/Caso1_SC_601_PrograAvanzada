@@ -1,41 +1,51 @@
+@using Caso1.Entities;
 @model Caso1.Entities.Tarea
+
 @{
-    ViewBag.Title = "Detalle de Tarea";
+    ViewBag.Title = "Detalles de la Tarea";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container mt-4">
-    <h2>Detalle de Tarea</h2>
-    <hr />
+    <div class="card shadow">
+        <div class="card-header bg-dark text-white">
+            Detalles de la Tarea
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Id)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Id)</dd>
 
-    <dl class="dl-horizontal">
-        <dt>@Html.DisplayNameFor(m => m.Titulo)</dt>
-        <dd>@Html.DisplayFor(m => m.Titulo)</dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Titulo)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Titulo)</dd>
 
-        <dt>@Html.DisplayNameFor(m => m.Detalle)</dt>
-        <dd>@Html.DisplayFor(m => m.Detalle)</dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Detalle)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Detalle)</dd>
 
-        <dt>@Html.DisplayNameFor(m => m.FechaHora)</dt>
-        <dd>@Model.FechaHora.ToString("dd/MM/yyyy HH:mm")</dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.FechaHora)</dt>
+                <dd class="col-sm-9">@Model.FechaHora.ToString("dd/MM/yyyy HH:mm")</dd>
 
-        <dt>@Html.DisplayNameFor(m => m.Estado)</dt>
-        <dd>
-            @{
-                string badge = "default";
-                string label = Model.Estado.ToString();
-                switch (Model.Estado)
-                {
-                    case Caso1.Entities.EstadoTarea.Pendiente:   badge = "warning";  label = "Pendiente";   break;
-                    case Caso1.Entities.EstadoTarea.EnProceso:   badge = "info";     label = "En Proceso";  break;
-                    case Caso1.Entities.EstadoTarea.Completada:  badge = "success";  label = "Completada";  break;
-                    case Caso1.Entities.EstadoTarea.Cancelada:   badge = "danger";   label = "Cancelada";   break;
-                }
-            }
-            <span class="label label-@badge">@label</span>
-        </dd>
-    </dl>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Estado)</dt>
+                <dd class="col-sm-9">
+                    @{
+                        string badge = "secondary";
+                        string label = Model.Estado.ToString();
+                        switch (Model.Estado)
+                        {
+                            case EstadoTarea.Pendiente: badge = "warning"; label = "Pendiente"; break;
+                            case EstadoTarea.EnProceso: badge = "info"; label = "En Proceso"; break;
+                            case EstadoTarea.Completada: badge = "success"; label = "Completada"; break;
+                            case EstadoTarea.Cancelada: badge = "danger"; label = "Cancelada"; break;
+                        }
+                    }
+                    <span class="badge badge-@badge">@label</span>
+                </dd>
+            </dl>
 
-    <div class="mt-3">
-        @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
-        @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-default" })
+            <div class="form-group mt-3">
+                @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        </div>
     </div>
 </div>

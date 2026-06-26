@@ -12,12 +12,14 @@ namespace Caso1.infraestructure.DBContexts
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Prioridad> Prioridades { get; set; }
         public DbSet<Tarea> Tareas { get; set; }
+        public DbSet<Estado> Estados { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Categoria>().ToTable("Categorias");
             modelBuilder.Entity<Prioridad>().ToTable("Prioridades");
             modelBuilder.Entity<Tarea>().ToTable("Tareas");
+            modelBuilder.Entity<Estado>().ToTable("Estados");
 
             modelBuilder.Entity<Categoria>()
                 .Property(c => c.Nombre)

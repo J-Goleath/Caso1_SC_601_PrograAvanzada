@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace Caso1.Entities
 {
- 
-    public class Categoria
+   
+    public class Prioridad
     {
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "El nombre de la categoría es obligatorio")]
+        [Required(ErrorMessage = "El nombre de la prioridad es obligatorio")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "El nombre debe tener entre 3 y 100 caracteres")]
-        [Display(Name = "Nombre de la Categoría")]
+        [Display(Name = "Nombre de la Prioridad")]
         public string Nombre { get; set; }
 
         [Required(ErrorMessage = "La descripción es obligatoria")]
@@ -30,7 +27,7 @@ namespace Caso1.Entities
 
         public bool Borrado { get; set; } = false;
 
-        public Categoria()
+        public Prioridad()
         {
             FechaCreacion = DateTime.Now;
         }

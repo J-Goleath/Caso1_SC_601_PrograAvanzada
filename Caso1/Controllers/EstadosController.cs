@@ -1,12 +1,14 @@
-using System;
+﻿using System;
 using System.Web.Mvc;
-using Caso1.Entities;
-using Caso1.infraestructure.Repositories;
+using Caso1.Models.DTOs;
+using Caso1.Models.Entities;
+using Caso1.Infrastructure.Repositories;
 using Caso1.Logging;
+using Caso1.Validators;
 
 namespace Caso1.Controllers
 {
-    public class EstadosController : Controller
+    public class EstadosController : BaseController
     {
         private readonly IEstadoRepository _repo;
 
@@ -34,18 +36,28 @@ namespace Caso1.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            return View(new CrearEstadoDto());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Estado estado)
+        public ActionResult Create(CrearEstadoDto dto)
         {
-            if (!ModelState.IsValid)
-                return View(estado);
+            if (!ValidateDto(dto, new CrearEstadoValidator()))
+            {
+                return View(dto);
+            }
 
             try
             {
+                var estado = new Estado
+                {
+                    Nombre = dto.Nombre,
+                    Descripcion = dto.Descripcion,
+                    Orden = dto.Orden,
+                    Activo = true
+                };
+
                 _repo.Crear(estado);
                 AppLogger.Info("Estado creado: {Nombre} (Orden: {Orden})",
                                estado.Nombre, estado.Orden);
@@ -54,9 +66,9 @@ namespace Caso1.Controllers
             }
             catch (Exception ex)
             {
-                AppLogger.Error(ex, "Error al crear estado: {Nombre}", estado.Nombre);
+                AppLogger.Error(ex, "Error al crear estado: {Nombre}", dto.Nombre);
                 TempData["Error"] = "Ocurrió un error al crear el estado.";
-                return View(estado);
+                return View(dto);
             }
         }
 
@@ -68,18 +80,42 @@ namespace Caso1.Controllers
                 TempData["Error"] = "Estado no encontrado.";
                 return RedirectToAction("Index");
             }
-            return View(estado);
+
+            var dto = new EditarEstadoDto
+            {
+                EstadoId = estado.EstadoId,
+                Nombre = estado.Nombre,
+                Descripcion = estado.Descripcion,
+                Orden = estado.Orden,
+                Activo = estado.Activo
+            };
+
+            return View(dto);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Estado estado)
+        public ActionResult Edit(EditarEstadoDto dto)
         {
-            if (!ModelState.IsValid)
-                return View(estado);
+            if (!ValidateDto(dto, new EditarEstadoValidator()))
+            {
+                return View(dto);
+            }
 
             try
             {
+                var estado = _repo.ObtenerPorId(dto.EstadoId);
+                if (estado == null)
+                {
+                    TempData["Error"] = "Estado no encontrado.";
+                    return RedirectToAction("Index");
+                }
+
+                estado.Nombre = dto.Nombre;
+                estado.Descripcion = dto.Descripcion;
+                estado.Orden = dto.Orden;
+                estado.Activo = dto.Activo;
+
                 _repo.Actualizar(estado);
                 AppLogger.Info("Estado actualizado: {Nombre} (Id: {Id})",
                                estado.Nombre, estado.EstadoId);
@@ -88,9 +124,9 @@ namespace Caso1.Controllers
             }
             catch (Exception ex)
             {
-                AppLogger.Error(ex, "Error al actualizar estado Id: {Id}", estado.EstadoId);
+                AppLogger.Error(ex, "Error al actualizar estado Id: {Id}", dto.EstadoId);
                 TempData["Error"] = "Ocurrio un error al actualizar el estado.";
-                return View(estado);
+                return View(dto);
             }
         }
 

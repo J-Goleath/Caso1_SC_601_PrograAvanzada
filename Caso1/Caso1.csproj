@@ -58,6 +58,9 @@
       <HintPath>packages\EntityFramework.6.5.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FluentValidation, Version=11.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>packages\FluentValidation.11.12.0\lib\netstandard2.0\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -158,31 +161,51 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\EstadoTarea.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\EstadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PrioridadesController.cs" />
     <Compile Include="Controllers\TareasController.cs" />
-    <Compile Include="Entities\Categoria.cs" />
-    <Compile Include="Entities\Estado.cs" />
-    <Compile Include="Entities\Prioridad.cs" />
-    <Compile Include="Entities\Tarea.cs" />
+    <Compile Include="Models\DTOs\CrearCategoriaDto.cs" />
+    <Compile Include="Models\DTOs\EditarCategoriaDto.cs" />
+    <Compile Include="Models\DTOs\CrearPrioridadDto.cs" />
+    <Compile Include="Models\DTOs\EditarPrioridadDto.cs" />
+    <Compile Include="Models\DTOs\CrearEstadoDto.cs" />
+    <Compile Include="Models\DTOs\EditarEstadoDto.cs" />
+    <Compile Include="Models\DTOs\CrearTareaDto.cs" />
+    <Compile Include="Models\DTOs\EditarTareaDto.cs" />
+    <Compile Include="Models\Entities\Categoria.cs" />
+    <Compile Include="Models\Entities\Estado.cs" />
+    <Compile Include="Models\Entities\Prioridad.cs" />
+    <Compile Include="Models\Entities\Tarea.cs" />
+    <Compile Include="Extensions\EstadoTareaExtension.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+    <Compile Include="Validators\CrearCategoriaValidator.cs" />
+    <Compile Include="Validators\EditarCategoriaValidator.cs" />
+    <Compile Include="Validators\CrearPrioridadValidator.cs" />
+    <Compile Include="Validators\EditarPrioridadValidator.cs" />
+    <Compile Include="Validators\CrearEstadoValidator.cs" />
+    <Compile Include="Validators\EditarEstadoValidator.cs" />
+    <Compile Include="Validators\CrearTareaValidator.cs" />
+    <Compile Include="Validators\EditarTareaValidator.cs" />
     <Compile Include="Filters\AuditFilter.cs" />
     <Compile Include="Filters\GlobalExceptionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="infraestructure\DBContexts\Caso1Context.cs" />
-    <Compile Include="infraestructure\Repositories\CategoriaRepository.cs" />
-    <Compile Include="infraestructure\Repositories\EstadoRepository.cs" />
-    <Compile Include="infraestructure\Repositories\ICategoriaRepository.cs" />
-    <Compile Include="infraestructure\Repositories\IEstadoRepository.cs" />
-    <Compile Include="infraestructure\Repositories\IPrioridadRepository.cs" />
-    <Compile Include="infraestructure\Repositories\IRepository.cs" />
-    <Compile Include="infraestructure\Repositories\ITareaRepository.cs" />
-    <Compile Include="infraestructure\Repositories\PrioridadRepository.cs" />
-    <Compile Include="infraestructure\Repositories\Repository.cs" />
-    <Compile Include="infraestructure\Repositories\TareaRepository.cs" />
+    <Compile Include="Infrastructure\DbContexts\Caso1DbContext.cs" />
+    <Compile Include="Infrastructure\Repositories\CategoriaRepository.cs" />
+    <Compile Include="Infrastructure\Repositories\EstadoRepository.cs" />
+    <Compile Include="Infrastructure\Repositories\ICategoriaRepository.cs" />
+    <Compile Include="Infrastructure\Repositories\IEstadoRepository.cs" />
+    <Compile Include="Infrastructure\Repositories\IPrioridadRepository.cs" />
+    <Compile Include="Infrastructure\Repositories\IRepository.cs" />
+    <Compile Include="Infrastructure\Repositories\ITareaRepository.cs" />
+    <Compile Include="Infrastructure\Repositories\PrioridadRepository.cs" />
+    <Compile Include="Infrastructure\Repositories\Repository.cs" />
+    <Compile Include="Infrastructure\Repositories\TareaRepository.cs" />
     <Compile Include="Logging\AppLogger.cs" />
     <Compile Include="Migrations\202606222229133_AddCategoriasTable.cs" />
     <Compile Include="Migrations\202606222229133_AddCategoriasTable.Designer.cs">
@@ -201,102 +224,9 @@
       <DependentUpon>202606261506550_AgregarEstados.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Antlr3.Runtime.dll" />
-    <Content Include="bin\Antlr3.Runtime.pdb" />
-    <Content Include="bin\Caso1.dll" />
-    <Content Include="bin\Caso1.pdb" />
-    <Content Include="bin\EntityFramework.dll" />
-    <Content Include="bin\EntityFramework.SqlServer.dll" />
-    <Content Include="bin\EntityFramework.SqlServer.xml" />
-    <Content Include="bin\EntityFramework.xml" />
-    <Content Include="bin\es\System.Web.Helpers.resources.dll" />
-    <Content Include="bin\es\System.Web.Mvc.resources.dll" />
-    <Content Include="bin\es\System.Web.Optimization.resources.dll" />
-    <Content Include="bin\es\System.Web.Razor.resources.dll" />
-    <Content Include="bin\es\System.Web.WebPages.Deployment.resources.dll" />
-    <Content Include="bin\es\System.Web.WebPages.Razor.resources.dll" />
-    <Content Include="bin\es\System.Web.WebPages.resources.dll" />
-    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
-    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
-    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
-    <Content Include="bin\Newtonsoft.Json.dll" />
-    <Content Include="bin\Newtonsoft.Json.xml" />
-    <Content Include="bin\roslyn\csc.exe" />
-    <Content Include="bin\roslyn\csi.exe" />
-    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
-    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
-    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
-    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
-    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll" />
-    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
-    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll" />
-    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll" />
-    <Content Include="bin\roslyn\Microsoft.Win32.Primitives.dll" />
-    <Content Include="bin\roslyn\System.AppContext.dll" />
-    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
-    <Content Include="bin\roslyn\System.Console.dll" />
-    <Content Include="bin\roslyn\System.Diagnostics.DiagnosticSource.dll" />
-    <Content Include="bin\roslyn\System.Diagnostics.FileVersionInfo.dll" />
-    <Content Include="bin\roslyn\System.Diagnostics.StackTrace.dll" />
-    <Content Include="bin\roslyn\System.Globalization.Calendars.dll" />
-    <Content Include="bin\roslyn\System.IO.Compression.dll" />
-    <Content Include="bin\roslyn\System.IO.Compression.ZipFile.dll" />
-    <Content Include="bin\roslyn\System.IO.FileSystem.dll" />
-    <Content Include="bin\roslyn\System.IO.FileSystem.Primitives.dll" />
-    <Content Include="bin\roslyn\System.Net.Http.dll" />
-    <Content Include="bin\roslyn\System.Net.Sockets.dll" />
-    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
-    <Content Include="bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll" />
-    <Content Include="bin\roslyn\System.Security.Cryptography.Algorithms.dll" />
-    <Content Include="bin\roslyn\System.Security.Cryptography.Encoding.dll" />
-    <Content Include="bin\roslyn\System.Security.Cryptography.Primitives.dll" />
-    <Content Include="bin\roslyn\System.Security.Cryptography.X509Certificates.dll" />
-    <Content Include="bin\roslyn\System.Text.Encoding.CodePages.dll" />
-    <Content Include="bin\roslyn\System.Threading.Tasks.Extensions.dll" />
-    <Content Include="bin\roslyn\System.ValueTuple.dll" />
-    <Content Include="bin\roslyn\System.Xml.ReaderWriter.dll" />
-    <Content Include="bin\roslyn\System.Xml.XmlDocument.dll" />
-    <Content Include="bin\roslyn\System.Xml.XPath.dll" />
-    <Content Include="bin\roslyn\System.Xml.XPath.XDocument.dll" />
-    <Content Include="bin\roslyn\vbc.exe" />
-    <Content Include="bin\roslyn\VBCSCompiler.exe" />
-    <Content Include="bin\Serilog.dll" />
-    <Content Include="bin\Serilog.Sinks.File.dll" />
-    <Content Include="bin\Serilog.Sinks.File.xml" />
-    <Content Include="bin\Serilog.xml" />
-    <Content Include="bin\System.Buffers.dll" />
-    <Content Include="bin\System.Buffers.xml" />
-    <Content Include="bin\System.Diagnostics.DiagnosticSource.dll" />
-    <Content Include="bin\System.Diagnostics.DiagnosticSource.xml" />
-    <Content Include="bin\System.Memory.dll" />
-    <Content Include="bin\System.Memory.xml" />
-    <Content Include="bin\System.Numerics.Vectors.dll" />
-    <Content Include="bin\System.Numerics.Vectors.xml" />
-    <Content Include="bin\System.Runtime.CompilerServices.Unsafe.dll" />
-    <Content Include="bin\System.Runtime.CompilerServices.Unsafe.xml" />
-    <Content Include="bin\System.Threading.Channels.dll" />
-    <Content Include="bin\System.Threading.Channels.xml" />
-    <Content Include="bin\System.Threading.Tasks.Extensions.dll" />
-    <Content Include="bin\System.Threading.Tasks.Extensions.xml" />
-    <Content Include="bin\System.Web.Helpers.dll" />
-    <Content Include="bin\System.Web.Helpers.xml" />
-    <Content Include="bin\System.Web.Mvc.dll" />
-    <Content Include="bin\System.Web.Mvc.xml" />
-    <Content Include="bin\System.Web.Optimization.dll" />
-    <Content Include="bin\System.Web.Optimization.xml" />
-    <Content Include="bin\System.Web.Razor.dll" />
-    <Content Include="bin\System.Web.Razor.xml" />
-    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
-    <Content Include="bin\System.Web.WebPages.Deployment.xml" />
-    <Content Include="bin\System.Web.WebPages.dll" />
-    <Content Include="bin\System.Web.WebPages.Razor.dll" />
-    <Content Include="bin\System.Web.WebPages.Razor.xml" />
-    <Content Include="bin\System.Web.WebPages.xml" />
-    <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -316,10 +246,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="infraestructure\SQL Script\Caso1.sql" />
-    <Content Include="obj\Debug\Caso1.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\Caso1.dll" />
-    <Content Include="obj\Debug\Caso1.pdb" />
+    <Content Include="Infrastructure\SQL Script\Caso1.sql" />
     <Content Include="packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll" />
     <Content Include="packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.pdb" />
     <Content Include="packages\bootstrap.5.2.3\bootstrap.png" />
@@ -405,20 +332,29 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include=".vs\Caso1.csproj.dtbcache.json" />
-    <Content Include=".vs\Caso1.slnx\config\applicationhost.config" />
-    <Content Include=".vs\Caso1.slnx\FileContentIndex\01db39fa-0905-40c5-b3e8-658294e43876.vsidx" />
-    <Content Include=".vs\Caso1.slnx\FileContentIndex\a585cd0f-d128-4a43-a49e-c8241ca19c7f.vsidx" />
-    <Content Include=".vs\Caso1.slnx\FileContentIndex\bcfc8197-d7a2-49d6-a388-f9c406e79855.vsidx" />
-    <Content Include=".vs\Caso1.slnx\FileContentIndex\d576dbf3-a453-4ce5-800b-aa8383ea0c42.vsidx" />
-    <Content Include=".vs\Caso1.slnx\FileContentIndex\f0b0abe4-2e88-45ce-8123-5d6e1dc6a7d5.vsidx" />
-    <Content Include=".vs\Caso1.slnx\v18\DocumentLayout.backup.json" />
-    <Content Include=".vs\Caso1.slnx\v18\DocumentLayout.json" />
-    <Content Include=".vs\slnx.sqlite" />
-    <Content Include=".vs\VSWorkspaceState.json" />
-    <Content Include="obj\Debug\Caso1.csproj.GenerateResource.cache" />
+    <Content Include="Logging\app-20260626_100132.log" />
+    <Content Include="Logging\app-20260626_101420.log" />
+    <Content Include="Logging\app-20260626_104136.log" />
+    <Content Include="Logging\app-20260709_145715.log" />
+    <Content Include="Logging\app-20260709_150558.log" />
     <None Include="packages.config" />
+    <Content Include="packages\FluentValidation.11.12.0\.signature.p7s" />
+    <Content Include="packages\FluentValidation.11.12.0\FluentValidation.11.12.0.nupkg" />
+    <Content Include="packages\FluentValidation.11.12.0\README.md" />
     <None Include="packages\jQuery.3.7.0\Content\Scripts\jquery-3.7.0-vsdoc.js" />
+    <Content Include="packages\FluentValidation.11.12.0\fluent-validation-icon.png" />
+    <Content Include="packages\FluentValidation.11.12.0\lib\net5.0\FluentValidation.dll" />
+    <Content Include="packages\FluentValidation.11.12.0\lib\net5.0\FluentValidation.xml" />
+    <Content Include="packages\FluentValidation.11.12.0\lib\net6.0\FluentValidation.dll" />
+    <Content Include="packages\FluentValidation.11.12.0\lib\net6.0\FluentValidation.xml" />
+    <Content Include="packages\FluentValidation.11.12.0\lib\net7.0\FluentValidation.dll" />
+    <Content Include="packages\FluentValidation.11.12.0\lib\net7.0\FluentValidation.xml" />
+    <Content Include="packages\FluentValidation.11.12.0\lib\net8.0\FluentValidation.dll" />
+    <Content Include="packages\FluentValidation.11.12.0\lib\net8.0\FluentValidation.xml" />
+    <Content Include="packages\FluentValidation.11.12.0\lib\netstandard2.0\FluentValidation.dll" />
+    <Content Include="packages\FluentValidation.11.12.0\lib\netstandard2.0\FluentValidation.xml" />
+    <Content Include="packages\FluentValidation.11.12.0\lib\netstandard2.1\FluentValidation.dll" />
+    <Content Include="packages\FluentValidation.11.12.0\lib\netstandard2.1\FluentValidation.xml" />
     <Content Include="packages\jQuery.3.7.0\Content\Scripts\jquery-3.7.0.js" />
     <Content Include="packages\jQuery.3.7.0\Content\Scripts\jquery-3.7.0.min.js" />
     <Content Include="packages\jQuery.3.7.0\Content\Scripts\jquery-3.7.0.slim.js" />
@@ -561,34 +497,41 @@
     <Content Include="packages\Newtonsoft.Json.13.0.3\lib\netstandard2.0\Newtonsoft.Json.dll" />
     <Content Include="packages\Newtonsoft.Json.13.0.3\lib\netstandard2.0\Newtonsoft.Json.xml" />
     <Content Include="packages\Newtonsoft.Json.13.0.3\packageIcon.png" />
-    <Content Include="packages\Serilog.4.3.1\icon.png" />
-    <Content Include="packages\Serilog.4.3.1\lib\net10.0\Serilog.dll" />
-    <Content Include="packages\Serilog.4.3.1\lib\net10.0\Serilog.xml" />
-    <Content Include="packages\Serilog.4.3.1\lib\net462\Serilog.dll" />
-    <Content Include="packages\Serilog.4.3.1\lib\net462\Serilog.xml" />
-    <Content Include="packages\Serilog.4.3.1\lib\net471\Serilog.dll" />
-    <Content Include="packages\Serilog.4.3.1\lib\net471\Serilog.xml" />
-    <Content Include="packages\Serilog.4.3.1\lib\net6.0\Serilog.dll" />
-    <Content Include="packages\Serilog.4.3.1\lib\net6.0\Serilog.xml" />
-    <Content Include="packages\Serilog.4.3.1\lib\net8.0\Serilog.dll" />
-    <Content Include="packages\Serilog.4.3.1\lib\net8.0\Serilog.xml" />
-    <Content Include="packages\Serilog.4.3.1\lib\net9.0\Serilog.dll" />
-    <Content Include="packages\Serilog.4.3.1\lib\net9.0\Serilog.xml" />
-    <Content Include="packages\Serilog.4.3.1\lib\netstandard2.0\Serilog.dll" />
-    <Content Include="packages\Serilog.4.3.1\lib\netstandard2.0\Serilog.xml" />
-    <Content Include="packages\Serilog.Sinks.File.7.0.0\lib\net462\Serilog.Sinks.File.dll" />
-    <Content Include="packages\Serilog.Sinks.File.7.0.0\lib\net462\Serilog.Sinks.File.xml" />
-    <Content Include="packages\Serilog.Sinks.File.7.0.0\lib\net471\Serilog.Sinks.File.dll" />
-    <Content Include="packages\Serilog.Sinks.File.7.0.0\lib\net471\Serilog.Sinks.File.xml" />
-    <Content Include="packages\Serilog.Sinks.File.7.0.0\lib\net6.0\Serilog.Sinks.File.dll" />
-    <Content Include="packages\Serilog.Sinks.File.7.0.0\lib\net6.0\Serilog.Sinks.File.xml" />
-    <Content Include="packages\Serilog.Sinks.File.7.0.0\lib\net8.0\Serilog.Sinks.File.dll" />
-    <Content Include="packages\Serilog.Sinks.File.7.0.0\lib\net8.0\Serilog.Sinks.File.xml" />
-    <Content Include="packages\Serilog.Sinks.File.7.0.0\lib\net9.0\Serilog.Sinks.File.dll" />
-    <Content Include="packages\Serilog.Sinks.File.7.0.0\lib\net9.0\Serilog.Sinks.File.xml" />
-    <Content Include="packages\Serilog.Sinks.File.7.0.0\lib\netstandard2.0\Serilog.Sinks.File.dll" />
-    <Content Include="packages\Serilog.Sinks.File.7.0.0\lib\netstandard2.0\Serilog.Sinks.File.xml" />
-    <Content Include="packages\Serilog.Sinks.File.7.0.0\serilog-sink-nuget.png" />
+    <Content Include="packages\Serilog.2.12.0\icon.png" />
+    <Content Include="packages\Serilog.2.12.0\lib\net45\Serilog.dll" />
+    <Content Include="packages\Serilog.2.12.0\lib\net45\Serilog.xml" />
+    <Content Include="packages\Serilog.2.12.0\lib\net46\Serilog.dll" />
+    <Content Include="packages\Serilog.2.12.0\lib\net46\Serilog.xml" />
+    <Content Include="packages\Serilog.2.12.0\lib\net47\Serilog.dll" />
+    <Content Include="packages\Serilog.2.12.0\lib\net47\Serilog.xml" />
+    <Content Include="packages\Serilog.2.12.0\lib\net5.0\Serilog.dll" />
+    <Content Include="packages\Serilog.2.12.0\lib\net5.0\Serilog.xml" />
+    <Content Include="packages\Serilog.2.12.0\lib\net6.0\Serilog.dll" />
+    <Content Include="packages\Serilog.2.12.0\lib\net6.0\Serilog.xml" />
+    <Content Include="packages\Serilog.2.12.0\lib\netstandard1.0\Serilog.dll" />
+    <Content Include="packages\Serilog.2.12.0\lib\netstandard1.0\Serilog.xml" />
+    <Content Include="packages\Serilog.2.12.0\lib\netstandard1.3\Serilog.dll" />
+    <Content Include="packages\Serilog.2.12.0\lib\netstandard1.3\Serilog.xml" />
+    <Content Include="packages\Serilog.2.12.0\lib\netstandard2.0\Serilog.dll" />
+    <Content Include="packages\Serilog.2.12.0\lib\netstandard2.0\Serilog.xml" />
+    <Content Include="packages\Serilog.2.12.0\lib\netstandard2.1\Serilog.dll" />
+    <Content Include="packages\Serilog.2.12.0\lib\netstandard2.1\Serilog.xml" />
+    <Content Include="packages\Serilog.Sinks.File.5.0.0\images\icon.png" />
+    <Content Include="packages\Serilog.Sinks.File.5.0.0\lib\net45\Serilog.Sinks.File.dll" />
+    <Content Include="packages\Serilog.Sinks.File.5.0.0\lib\net45\Serilog.Sinks.File.pdb" />
+    <Content Include="packages\Serilog.Sinks.File.5.0.0\lib\net45\Serilog.Sinks.File.xml" />
+    <Content Include="packages\Serilog.Sinks.File.5.0.0\lib\net5.0\Serilog.Sinks.File.dll" />
+    <Content Include="packages\Serilog.Sinks.File.5.0.0\lib\net5.0\Serilog.Sinks.File.pdb" />
+    <Content Include="packages\Serilog.Sinks.File.5.0.0\lib\net5.0\Serilog.Sinks.File.xml" />
+    <Content Include="packages\Serilog.Sinks.File.5.0.0\lib\netstandard1.3\Serilog.Sinks.File.dll" />
+    <Content Include="packages\Serilog.Sinks.File.5.0.0\lib\netstandard1.3\Serilog.Sinks.File.pdb" />
+    <Content Include="packages\Serilog.Sinks.File.5.0.0\lib\netstandard1.3\Serilog.Sinks.File.xml" />
+    <Content Include="packages\Serilog.Sinks.File.5.0.0\lib\netstandard2.0\Serilog.Sinks.File.dll" />
+    <Content Include="packages\Serilog.Sinks.File.5.0.0\lib\netstandard2.0\Serilog.Sinks.File.pdb" />
+    <Content Include="packages\Serilog.Sinks.File.5.0.0\lib\netstandard2.0\Serilog.Sinks.File.xml" />
+    <Content Include="packages\Serilog.Sinks.File.5.0.0\lib\netstandard2.1\Serilog.Sinks.File.dll" />
+    <Content Include="packages\Serilog.Sinks.File.5.0.0\lib\netstandard2.1\Serilog.Sinks.File.pdb" />
+    <Content Include="packages\Serilog.Sinks.File.5.0.0\lib\netstandard2.1\Serilog.Sinks.File.xml" />
     <Content Include="packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll" />
     <Content Include="packages\System.Buffers.4.5.1\lib\net461\System.Buffers.xml" />
     <Content Include="packages\System.Buffers.4.5.1\lib\netstandard1.1\System.Buffers.dll" />
@@ -691,21 +634,6 @@
     <Content Include="packages\System.Threading.Tasks.Extensions.4.5.4\version.txt" />
     <Content Include="packages\WebGrease.1.6.0\lib\WebGrease.dll" />
     <Content Include="packages\WebGrease.1.6.0\tools\WG.EXE" />
-    <Content Include="bin\Caso1.dll.config" />
-    <Content Include="bin\roslyn\csc.exe.config" />
-    <Content Include="bin\roslyn\csc.rsp" />
-    <Content Include="bin\roslyn\csi.exe.config" />
-    <Content Include="bin\roslyn\csi.rsp" />
-    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
-    <Content Include="bin\roslyn\Microsoft.Managed.Core.targets" />
-    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
-    <Content Include="bin\roslyn\vbc.exe.config" />
-    <Content Include="bin\roslyn\vbc.rsp" />
-    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
-    <Content Include="obj\Debug\Caso1.csproj.AssemblyReference.cache" />
-    <Content Include="obj\Debug\Caso1.csproj.CoreCompileInputs.cache" />
-    <Content Include="obj\Debug\Caso1.csproj.Up2Date" />
-    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="packages\Antlr.3.5.0.2\.signature.p7s" />
     <Content Include="packages\Antlr.3.5.0.2\Antlr.3.5.0.2.nupkg" />
     <Content Include="packages\bootstrap.5.2.3\.signature.p7s" />
@@ -861,14 +789,6 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="packages\Serilog.4.3.1\.signature.p7s" />
-    <Content Include="packages\Serilog.4.3.1\buildTransitive\Serilog.targets" />
-    <Content Include="packages\Serilog.4.3.1\build\Serilog.targets" />
-    <Content Include="packages\Serilog.4.3.1\README.md" />
-    <Content Include="packages\Serilog.4.3.1\Serilog.4.3.1.nupkg" />
-    <Content Include="packages\Serilog.Sinks.File.7.0.0\.signature.p7s" />
-    <Content Include="packages\Serilog.Sinks.File.7.0.0\README.md" />
-    <Content Include="packages\Serilog.Sinks.File.7.0.0\Serilog.Sinks.File.7.0.0.nupkg" />
     <Content Include="packages\System.Buffers.4.5.1\.signature.p7s" />
     <Content Include="packages\System.Buffers.4.5.1\lib\netcoreapp2.0\_._" />
     <Content Include="packages\System.Buffers.4.5.1\lib\uap10.0.16299\_._" />
@@ -930,6 +850,10 @@
     <Content Include="packages\System.Threading.Tasks.Extensions.4.5.4\ref\xamarintvos10\_._" />
     <Content Include="packages\System.Threading.Tasks.Extensions.4.5.4\ref\xamarinwatchos10\_._" />
     <Content Include="packages\System.Threading.Tasks.Extensions.4.5.4\System.Threading.Tasks.Extensions.4.5.4.nupkg" />
+    <Content Include="packages\Serilog.2.12.0\.signature.p7s" />
+    <Content Include="packages\Serilog.2.12.0\Serilog.2.12.0.nupkg" />
+    <Content Include="packages\Serilog.Sinks.File.5.0.0\.signature.p7s" />
+    <Content Include="packages\Serilog.Sinks.File.5.0.0\Serilog.Sinks.File.5.0.0.nupkg" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -984,8 +908,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="bin\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202606222229133_AddCategoriasTable.resx">
@@ -1000,9 +923,6 @@
     <EmbeddedResource Include="Migrations\202606261506550_AgregarEstados.resx">
       <DependentUpon>202606261506550_AgregarEstados.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="obj\Debug\Caso1.Migrations.AddCategoriasTable.resources" />
-    <EmbeddedResource Include="obj\Debug\Caso1.Migrations.AddTareasTable.resources" />
-    <EmbeddedResource Include="obj\Debug\Caso1.Migrations.AgregarPrioridades.resources" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

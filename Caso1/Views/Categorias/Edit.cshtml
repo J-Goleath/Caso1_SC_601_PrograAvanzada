@@ -1,4 +1,4 @@
-@model Caso1.Entities.Categoria
+﻿@model Caso1.Models.DTOs.EditarCategoriaDto
 
 @{
     ViewBag.Title = "Editar Categoria";
@@ -11,12 +11,11 @@
             Editar Categoria
         </div>
         <div class="card-body">
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("Edit", "Categorias", FormMethod.Post, new { id = "formEditarCategoria" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(model => model.Id)
-                @Html.HiddenFor(model => model.FechaCreacion) 
-                @Html.HiddenFor(model => model.Borrado)
+                @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
 
                 <div class="row">
                     <div class="col-md-12">
@@ -50,5 +49,44 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        $(function () {
+
+            $("#formEditarCategoria").submit(function (event) {
+
+                $(".jquery-error").remove();
+
+                var tieneErrores = false;
+
+                var nombre = $("#Nombre").val().trim();
+                var descripcion = $("#Descripcion").val().trim();
+
+                if (nombre.length < 3) {
+                    mostrarError("#Nombre", "El nombre debe tener al menos 3 caracteres.");
+                    tieneErrores = true;
+                }
+
+                if (descripcion.length < 5) {
+                    mostrarError("#Descripcion", "La descripción debe tener al menos 5 caracteres.");
+                    tieneErrores = true;
+                }
+
+                if (tieneErrores) {
+                    event.preventDefault();
+                }
+
+            });
+
+            function mostrarError(selector, mensaje) {
+                $(selector).after(
+                    "<span class='text-danger jquery-error d-block mt-1'>" +
+                    mensaje +
+                    "</span>"
+                );
+            }
+
+        });
+
+    </script>
 }

@@ -1,6 +1,8 @@
-﻿using Caso1.Entities;
-using Caso1.infraestructure.DBContexts;
-using Caso1.infraestructure.Repositories;
+﻿using Caso1.Models.DTOs;
+using Caso1.Models.Entities;
+using Caso1.Infrastructure.DbContexts;
+using Caso1.Infrastructure.Repositories;
+using Caso1.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +12,13 @@ using System.Web.Mvc;
 namespace Caso1.Controllers
 {
     [RoutePrefix("Categorias")]
-    public class CategoriasController : Controller
+    public class CategoriasController : BaseController
     {
         private readonly ICategoriaRepository _repository;
 
         public CategoriasController()
         {
-            var context = new Caso1Context();
+            var context = new Caso1DbContext();
             _repository = new CategoriaRepository(context);
         }
 
@@ -30,30 +32,34 @@ namespace Caso1.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var model = new Categoria();
-            model.Id = new Random().Next(1000000);
-            return View(model);
+            return View(new CrearCategoriaDto());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Categoria categoria)
+        public ActionResult Create(CrearCategoriaDto dto)
         {
-            if (ModelState.IsValid)
+            if (!ValidateDto(dto, new CrearCategoriaValidator()))
             {
-                if (_repository.ExisteCategoriaConNombre(categoria.Nombre))
-                {
-                    ModelState.AddModelError("Nombre", "Ya existe una categoria con este nombre");
-                    return View(categoria);
-                }
-
-                categoria.FechaCreacion = DateTime.Now;
-                _repository.Add(categoria);
-                TempData["MensajeExito"] = "Categoria registrada correctamente";
-                return RedirectToAction(nameof(Index));
+                return View(dto);
             }
 
-            return View(categoria);
+            if (_repository.ExisteCategoriaConNombre(dto.Nombre))
+            {
+                ModelState.AddModelError("Nombre", "Ya existe una categoria con este nombre");
+                return View(dto);
+            }
+
+            var categoria = new Categoria
+            {
+                Nombre = dto.Nombre,
+                Descripcion = dto.Descripcion,
+                FechaCreacion = DateTime.Now
+            };
+
+            _repository.Add(categoria);
+            TempData["MensajeExito"] = "Categoria registrada correctamente";
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
@@ -77,37 +83,48 @@ namespace Caso1.Controllers
                 TempData["MensajeError"] = "La categoria no existe";
                 return RedirectToAction(nameof(Index));
             }
-            return View(model);
+
+            var dto = new EditarCategoriaDto
+            {
+                Id = model.Id,
+                Nombre = model.Nombre,
+                Descripcion = model.Descripcion
+            };
+
+            return View(dto);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Categoria categoria)
+        public ActionResult Edit(EditarCategoriaDto dto)
         {
-            if (ModelState.IsValid)
+            if (!ValidateDto(dto, new EditarCategoriaValidator()))
             {
-                var existe = _repository.ExisteCategoriaConNombre(categoria.Nombre);
-                var actual = _repository.GetById(categoria.Id);
+                return View(dto);
+            }
 
-                if (existe && actual != null && actual.Nombre != categoria.Nombre)
-                {
-                    ModelState.AddModelError("Nombre", "Ya existe otra categoria con este nombre");
-                    return View(categoria);
-                }
+            var categoriaExistente = _repository.GetById(dto.Id);
 
-                var categoriaExistente = _repository.GetById(categoria.Id);
-                if (categoriaExistente != null)
-                {
-                    categoria.FechaCreacion = categoriaExistente.FechaCreacion;
-                    categoria.Borrado = categoriaExistente.Borrado;
-                }
-
-                _repository.Update(categoria);
-                TempData["MensajeExito"] = "Categoria actualizada correctamente";
+            if (categoriaExistente == null || categoriaExistente.Borrado)
+            {
+                TempData["MensajeError"] = "La categoria no existe";
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(categoria);
+            var existe = _repository.ExisteCategoriaConNombre(dto.Nombre);
+
+            if (existe && categoriaExistente.Nombre != dto.Nombre)
+            {
+                ModelState.AddModelError("Nombre", "Ya existe otra categoria con este nombre");
+                return View(dto);
+            }
+
+            categoriaExistente.Nombre = dto.Nombre;
+            categoriaExistente.Descripcion = dto.Descripcion;
+
+            _repository.Update(categoriaExistente);
+            TempData["MensajeExito"] = "Categoria actualizada correctamente";
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]

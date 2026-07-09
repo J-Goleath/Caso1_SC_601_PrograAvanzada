@@ -1,4 +1,4 @@
-@model Caso1.Entities.Estado
+﻿@model Caso1.Models.DTOs.EditarEstadoDto
 
 @{
     ViewBag.Title = "Editar Estado";
@@ -11,10 +11,11 @@
             Editar Estado
         </div>
         <div class="card-body">
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("Edit", "Estados", FormMethod.Post, new { id = "formEditarEstado" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(model => model.EstadoId)
+                @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
 
                 <div class="row">
                     <div class="col-md-12">
@@ -64,5 +65,44 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        $(function () {
+
+            $("#formEditarEstado").submit(function (event) {
+
+                $(".jquery-error").remove();
+
+                var tieneErrores = false;
+
+                var nombre = $("#Nombre").val().trim();
+                var orden = $("#Orden").val();
+
+                if (nombre.length < 2) {
+                    mostrarError("#Nombre", "El nombre debe tener al menos 2 caracteres.");
+                    tieneErrores = true;
+                }
+
+                if (orden === "" || orden < 1) {
+                    mostrarError("#Orden", "El orden debe ser un número mayor a 0.");
+                    tieneErrores = true;
+                }
+
+                if (tieneErrores) {
+                    event.preventDefault();
+                }
+
+            });
+
+            function mostrarError(selector, mensaje) {
+                $(selector).after(
+                    "<span class='text-danger jquery-error d-block mt-1'>" +
+                    mensaje +
+                    "</span>"
+                );
+            }
+
+        });
+
+    </script>
 }

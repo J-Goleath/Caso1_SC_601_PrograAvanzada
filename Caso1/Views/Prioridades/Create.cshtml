@@ -1,4 +1,4 @@
-﻿@model Caso1.Entities.Prioridad
+﻿@model Caso1.Models.DTOs.CrearPrioridadDto
 
 @{
     ViewBag.Title = "Registrar Prioridad";
@@ -11,11 +11,10 @@
             Registrar Nueva Prioridad
         </div>
         <div class="card-body">
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("Create", "Prioridades", FormMethod.Post, new { id = "formCrearPrioridad" }))
             {
                 @Html.AntiForgeryToken()
-                @Html.HiddenFor(model => model.Id)
-                @Html.HiddenFor(model => model.FechaCreacion)
+                @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
 
                 <div class="row">
                     <div class="col-md-12">
@@ -49,5 +48,42 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(function () {
+
+            $("#formCrearPrioridad").submit(function (event) {
+
+                $(".jquery-error").remove();
+
+                var tieneErrores = false;
+
+                var nombre = $("#Nombre").val().trim();
+                var descripcion = $("#Descripcion").val().trim();
+
+                if (nombre.length < 3) {
+                    mostrarError("#Nombre", "El nombre debe tener al menos 3 caracteres.");
+                    tieneErrores = true;
+                }
+
+                if (descripcion.length < 5) {
+                    mostrarError("#Descripcion", "La descripción debe tener al menos 5 caracteres.");
+                    tieneErrores = true;
+                }
+
+                if (tieneErrores) {
+                    event.preventDefault();
+                }
+
+            });
+
+            function mostrarError(selector, mensaje) {
+                $(selector).after(
+                    "<span class='text-danger jquery-error d-block mt-1'>" +
+                    mensaje +
+                    "</span>"
+                );
+            }
+
+        });
+    </script>
 }

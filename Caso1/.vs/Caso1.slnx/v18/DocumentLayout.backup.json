@@ -1,14 +1,34 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\U\\SC-601 Programacio\u0301n avanzada\\Caso1_SC_601_PrograAvanzada\\Caso1\\",
+  "WorkspaceRootPath": "C:\\Users\\jgole\\Downloads\\Caso1(1)\\Caso1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|d:\\u\\sc-601 programacio\u0301n avanzada\\caso1_sc_601_prograavanzada\\caso1\\filters\\globalexceptionfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|solutionrelative:filters\\globalexceptionfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|c:\\users\\jgole\\downloads\\caso1(1)\\caso1\\views\\tareas\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|solutionrelative:views\\tareas\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|d:\\u\\sc-601 programacio\u0301n avanzada\\caso1_sc_601_prograavanzada\\caso1\\logging\\app-20260626_100132.log||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|solutionrelative:logging\\app-20260626_100132.log||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|c:\\users\\jgole\\downloads\\caso1(1)\\caso1\\views\\tareas\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|solutionrelative:views\\tareas\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|c:\\users\\jgole\\downloads\\caso1(1)\\caso1\\views\\tareas\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|solutionrelative:views\\tareas\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|c:\\users\\jgole\\downloads\\caso1(1)\\caso1\\views\\tareas\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|solutionrelative:views\\tareas\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|c:\\users\\jgole\\downloads\\caso1(1)\\caso1\\views\\tareas\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|solutionrelative:views\\tareas\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|c:\\users\\jgole\\downloads\\caso1(1)\\caso1\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|c:\\users\\jgole\\downloads\\caso1(1)\\caso1\\views\\categorias\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|solutionrelative:views\\categorias\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,28 +58,93 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GlobalExceptionFilter.cs",
-              "DocumentMoniker": "D:\\U\\SC-601 Programacio\u0301n avanzada\\Caso1_SC_601_PrograAvanzada\\Caso1\\Filters\\GlobalExceptionFilter.cs",
-              "RelativeDocumentMoniker": "Filters\\GlobalExceptionFilter.cs",
-              "ToolTip": "D:\\U\\SC-601 Programacio\u0301n avanzada\\Caso1_SC_601_PrograAvanzada\\Caso1\\Filters\\GlobalExceptionFilter.cs",
-              "RelativeToolTip": "Filters\\GlobalExceptionFilter.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB8AAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-26T16:29:06.313Z",
+              "DocumentIndex": 2,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\jgole\\Downloads\\Caso1(1)\\Caso1\\Views\\Tareas\\Details.cshtml",
+              "RelativeDocumentMoniker": "Views\\Tareas\\Details.cshtml",
+              "ToolTip": "C:\\Users\\jgole\\Downloads\\Caso1(1)\\Caso1\\Views\\Tareas\\Details.cshtml",
+              "RelativeToolTip": "Views\\Tareas\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-09T21:12:36.162Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "C:\\Users\\jgole\\Downloads\\Caso1(1)\\Caso1\\Views\\Tareas\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Views\\Tareas\\Delete.cshtml",
+              "ToolTip": "C:\\Users\\jgole\\Downloads\\Caso1(1)\\Caso1\\Views\\Tareas\\Delete.cshtml",
+              "RelativeToolTip": "Views\\Tareas\\Delete.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-09T21:12:33.698Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\jgole\\Downloads\\Caso1(1)\\Caso1\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\jgole\\Downloads\\Caso1(1)\\Caso1\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-09T21:11:52.543Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\jgole\\Downloads\\Caso1(1)\\Caso1\\Views\\Tareas\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\Tareas\\Create.cshtml",
+              "ToolTip": "C:\\Users\\jgole\\Downloads\\Caso1(1)\\Caso1\\Views\\Tareas\\Create.cshtml",
+              "RelativeToolTip": "Views\\Tareas\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-09T21:11:24.252Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "app-20260626_100132.log",
-              "DocumentMoniker": "D:\\U\\SC-601 Programacio\u0301n avanzada\\Caso1_SC_601_PrograAvanzada\\Caso1\\Logging\\app-20260626_100132.log",
-              "RelativeDocumentMoniker": "Logging\\app-20260626_100132.log",
-              "ToolTip": "D:\\U\\SC-601 Programacio\u0301n avanzada\\Caso1_SC_601_PrograAvanzada\\Caso1\\Logging\\app-20260626_100132.log",
-              "RelativeToolTip": "Logging\\app-20260626_100132.log",
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\jgole\\Downloads\\Caso1(1)\\Caso1\\Views\\Tareas\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\Tareas\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\jgole\\Downloads\\Caso1(1)\\Caso1\\Views\\Tareas\\Edit.cshtml",
+              "RelativeToolTip": "Views\\Tareas\\Edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGIAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-09T21:10:39.006Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\jgole\\Downloads\\Caso1(1)\\Caso1\\Views\\Tareas\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Tareas\\Index.cshtml",
+              "ToolTip": "C:\\Users\\jgole\\Downloads\\Caso1(1)\\Caso1\\Views\\Tareas\\Index.cshtml",
+              "RelativeToolTip": "Views\\Tareas\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-06-26T16:26:26.17Z",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-09T21:10:25.35Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\jgole\\Downloads\\Caso1(1)\\Caso1\\Views\\Categorias\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\Categorias\\Create.cshtml",
+              "ToolTip": "C:\\Users\\jgole\\Downloads\\Caso1(1)\\Caso1\\Views\\Categorias\\Create.cshtml",
+              "RelativeToolTip": "Views\\Categorias\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-09T21:10:18.2Z",
               "EditorCaption": ""
             }
           ]

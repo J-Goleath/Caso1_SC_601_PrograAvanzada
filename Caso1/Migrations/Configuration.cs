@@ -1,16 +1,16 @@
 ﻿namespace Caso1.Migrations
 {
-    using Caso1.Entities;
+    using Caso1.Models.Entities;
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Caso1.infraestructure.DBContexts.Caso1Context>
+    internal sealed class Configuration : DbMigrationsConfiguration<Caso1.Infrastructure.DbContexts.Caso1DbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Caso1.infraestructure.DBContexts.Caso1Context context)
+        protected override void Seed(Caso1.Infrastructure.DbContexts.Caso1DbContext context)
         {
             context.Estados.AddOrUpdate(e => e.Nombre,
                 new Estado { Nombre = "Pendiente", Descripcion = "Tarea aún no iniciada.", Orden = 1, Activo = true },

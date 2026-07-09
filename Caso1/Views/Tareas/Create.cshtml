@@ -1,5 +1,4 @@
-@using Caso1.Entities;
-@model Caso1.Entities.Tarea
+﻿@model Caso1.Models.DTOs.CrearTareaDto
 
 @{
     ViewBag.Title = "Registrar Tarea";
@@ -12,15 +11,16 @@
             Registrar Nueva Tarea
         </div>
         <div class="card-body">
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("Create", "Tareas", FormMethod.Post, new { id = "formCrearTarea" }))
             {
                 @Html.AntiForgeryToken()
+                @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             @Html.LabelFor(model => model.Titulo, new { @class = "font-weight-bold" })
-                            @Html.TextBoxFor(model => model.Titulo, new { @class = "form-control", placeholder = "Ej: Estudiar para Progra" })
+                            @Html.TextBoxFor(model => model.Titulo, new { @class = "form-control", placeholder = "Estudiar" })
                             @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -36,23 +36,6 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.FechaHora, new { @class = "font-weight-bold" })
-                            @Html.TextBoxFor(model => model.FechaHora, new { @class = "form-control", type = "datetime-local" })
-                            @Html.ValidationMessageFor(model => model.FechaHora, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Estado, new { @class = "font-weight-bold" })
-                            @Html.DropDownListFor(model => model.Estado, ViewBag.Estados as SelectList, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
                 <div class="form-group mt-3">
                     <button type="submit" class="btn btn-success">Guardar</button>
                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-secondary" })
@@ -63,5 +46,42 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(function () {
+
+            $("#formCrearTarea").submit(function (event) {
+
+                $(".jquery-error").remove();
+
+                var tieneErrores = false;
+
+                var titulo = $("#Titulo").val().trim();
+                var detalle = $("#Detalle").val().trim();
+
+                if (titulo.length < 3) {
+                    mostrarError("#Titulo");
+                    tieneErrores = true;
+                }
+
+                if (detalle.length < 5) {
+                    mostrarError("#Detalle");
+                    tieneErrores = true;
+                }
+
+                if (tieneErrores) {
+                    event.preventDefault();
+                }
+
+            });
+
+            function mostrarError(selector, mensaje) {
+                $(selector).after(
+                    "<span class='text-danger jquery-error d-block mt-1'>" +
+                    mensaje +
+                    "</span>"
+                );
+            }
+
+        });
+    </script>
 }

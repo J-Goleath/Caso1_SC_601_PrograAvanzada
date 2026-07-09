@@ -1,19 +1,21 @@
-﻿using Caso1.Entities;
-using Caso1.infraestructure.DBContexts;
-using Caso1.infraestructure.Repositories;
+﻿using Caso1.Models.DTOs;
+using Caso1.Models.Entities;
+using Caso1.Infrastructure.DbContexts;
+using Caso1.Infrastructure.Repositories;
+using Caso1.Validators;
 using System;
 using System.Web.Mvc;
 
 namespace Caso1.Controllers
 {
     [RoutePrefix("Prioridades")]
-    public class PrioridadesController : Controller
+    public class PrioridadesController : BaseController
     {
         private readonly IPrioridadRepository _repository;
 
         public PrioridadesController()
         {
-            var context = new Caso1Context();
+            var context = new Caso1DbContext();
             _repository = new PrioridadRepository(context);
         }
 
@@ -27,30 +29,34 @@ namespace Caso1.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var model = new Prioridad();
-            model.Id = new Random().Next(1000000);
-            return View(model);
+            return View(new CrearPrioridadDto());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Prioridad prioridad)
+        public ActionResult Create(CrearPrioridadDto dto)
         {
-            if (ModelState.IsValid)
+            if (!ValidateDto(dto, new CrearPrioridadValidator()))
             {
-                if (_repository.ExistePrioridadConNombre(prioridad.Nombre))
-                {
-                    ModelState.AddModelError("Nombre", "Ya existe una prioridad con este nombre");
-                    return View(prioridad);
-                }
-
-                prioridad.FechaCreacion = DateTime.Now;
-                _repository.Add(prioridad);
-                TempData["MensajeExito"] = "Prioridad registrada correctamente";
-                return RedirectToAction(nameof(Index));
+                return View(dto);
             }
 
-            return View(prioridad);
+            if (_repository.ExistePrioridadConNombre(dto.Nombre))
+            {
+                ModelState.AddModelError("Nombre", "Ya existe una prioridad con este nombre");
+                return View(dto);
+            }
+
+            var prioridad = new Prioridad
+            {
+                Nombre = dto.Nombre,
+                Descripcion = dto.Descripcion,
+                FechaCreacion = DateTime.Now
+            };
+
+            _repository.Add(prioridad);
+            TempData["MensajeExito"] = "Prioridad registrada correctamente";
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
@@ -78,38 +84,47 @@ namespace Caso1.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(model);
+            var dto = new EditarPrioridadDto
+            {
+                Id = model.Id,
+                Nombre = model.Nombre,
+                Descripcion = model.Descripcion
+            };
+
+            return View(dto);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Prioridad prioridad)
+        public ActionResult Edit(EditarPrioridadDto dto)
         {
-            if (ModelState.IsValid)
+            if (!ValidateDto(dto, new EditarPrioridadValidator()))
             {
-                var existe = _repository.ExistePrioridadConNombre(prioridad.Nombre);
-                var actual = _repository.GetById(prioridad.Id);
+                return View(dto);
+            }
 
-                if (existe && actual != null && actual.Nombre != prioridad.Nombre)
-                {
-                    ModelState.AddModelError("Nombre", "Ya existe otra prioridad con este nombre");
-                    return View(prioridad);
-                }
+            var prioridadExistente = _repository.GetById(dto.Id);
 
-                var prioridadExistente = _repository.GetById(prioridad.Id);
-
-                if (prioridadExistente != null)
-                {
-                    prioridad.FechaCreacion = prioridadExistente.FechaCreacion;
-                    prioridad.Borrado = prioridadExistente.Borrado;
-                }
-
-                _repository.Update(prioridad);
-                TempData["MensajeExito"] = "Prioridad actualizada correctamente";
+            if (prioridadExistente == null || prioridadExistente.Borrado)
+            {
+                TempData["MensajeError"] = "La prioridad no existe";
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(prioridad);
+            var existe = _repository.ExistePrioridadConNombre(dto.Nombre);
+
+            if (existe && prioridadExistente.Nombre != dto.Nombre)
+            {
+                ModelState.AddModelError("Nombre", "Ya existe otra prioridad con este nombre");
+                return View(dto);
+            }
+
+            prioridadExistente.Nombre = dto.Nombre;
+            prioridadExistente.Descripcion = dto.Descripcion;
+
+            _repository.Update(prioridadExistente);
+            TempData["MensajeExito"] = "Prioridad actualizada correctamente";
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]

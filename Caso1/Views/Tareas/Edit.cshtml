@@ -1,5 +1,4 @@
-@using Caso1.Entities;
-@model Caso1.Entities.Tarea
+﻿@model Caso1.Models.DTOs.EditarTareaDto
 
 @{
     ViewBag.Title = "Editar Tarea";
@@ -12,11 +11,11 @@
             Editar Tarea
         </div>
         <div class="card-body">
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("Edit", "Tareas", FormMethod.Post, new { id = "formEditarTarea" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(model => model.Id)
-                @Html.HiddenFor(model => model.Borrado)
+                @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
 
                 <div class="row">
                     <div class="col-md-12">
@@ -41,15 +40,22 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.FechaHora, new { @class = "font-weight-bold" })
-                            @Html.TextBoxFor(model => model.FechaHora, new { @class = "form-control", type = "datetime-local" })
-                            @Html.ValidationMessageFor(model => model.FechaHora, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
                             @Html.LabelFor(model => model.Estado, new { @class = "font-weight-bold" })
-                            @Html.DropDownListFor(model => model.Estado, ViewBag.Estados as SelectList, new { @class = "form-control" })
+
+                            @Html.DropDownListFor(
+                                model => model.Estado,
+                                new SelectList(
+                                    new[]
+                                    {
+                                        "Pendiente",
+                                        "EnProceso",
+                                        "Completada",
+                                        "Cancelada"
+                                    },
+                                    Model.Estado),
+                                "Seleccione un estado",
+                                new { @class = "form-control" })
+
                             @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -65,5 +71,50 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        $(function () {
+
+            $("#formEditarTarea").submit(function (event) {
+
+                $(".jquery-error").remove();
+
+                var tieneErrores = false;
+
+                var titulo = $("#Titulo").val().trim();
+                var detalle = $("#Detalle").val().trim();
+                var estado = $("#Estado").val();
+
+                if (titulo.length < 3) {
+                    mostrarError("#Titulo");
+                    tieneErrores = true;
+                }
+
+                if (detalle.length < 5) {
+                    mostrarError("#Detalle");
+                    tieneErrores = true;
+                }
+
+                if (!estado) {
+                    mostrarError("#Estado");
+                    tieneErrores = true;
+                }
+
+                if (tieneErrores) {
+                    event.preventDefault();
+                }
+
+            });
+
+            function mostrarError(selector, mensaje) {
+                $(selector).after(
+                    "<span class='text-danger jquery-error d-block mt-1'>" +
+                    mensaje +
+                    "</span>"
+                );
+            }
+
+        });
+
+    </script>
 }

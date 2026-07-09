@@ -1,4 +1,4 @@
-@model Caso1.Entities.Estado
+﻿@model Caso1.Models.Entities.Estado
 
 @{
     ViewBag.Title = "Eliminar Estado";
@@ -26,7 +26,7 @@
                 <dd class="col-sm-9">@Html.DisplayFor(model => model.Orden)</dd>
             </dl>
 
-            @using (Html.BeginForm("DeleteConfirmed", "Estados", new { id = Model.EstadoId }, FormMethod.Post))
+            @using (Html.BeginForm("Delete", "Estados", new { id = Model.EstadoId }, FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
                 <button type="submit" class="btn btn-danger">Sí, eliminar</button>

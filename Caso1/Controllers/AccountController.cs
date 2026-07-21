@@ -88,11 +88,7 @@ namespace Caso1.Controllers
 
             if (result.Succeeded)
             {
-                // Los roles ya se crean automáticamente en
-                // Migrations/Configuration.cs (Seed), así que todo usuario
-                // que se registra por su cuenta recibe el rol base
-                // "Usuario". Los demás roles (Administrador, Supervisor,
-                // Soporte, Desarrollo) se asignan desde /Role.
+
                 await UserManager.AddToRoleAsync(user.Id, Roles.Usuario);
 
                 await SignInManager.SignInAsync(

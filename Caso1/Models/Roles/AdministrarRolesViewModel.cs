@@ -4,8 +4,7 @@ using System.Web.Mvc;
 
 namespace Caso1.Models.Roles
 {
-    // ViewModel que usa RoleController para mostrar y administrar
-    // los roles de un usuario específico (asignar / remover).
+
     public class AdministrarRolesViewModel
     {
         [Required]

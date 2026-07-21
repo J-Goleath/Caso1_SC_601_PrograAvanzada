@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\U\\SC-601 Programacio\u0301n avanzada\\Caso1_SC_601_PrograAvanzada\\Caso1\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|d:\\u\\sc-601 programacio\u0301n avanzada\\caso1_sc_601_prograavanzada\\caso1\\models\\identity\\identityconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|solutionrelative:models\\identity\\identityconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|d:\\u\\sc-601 programacio\u0301n avanzada\\caso1_sc_601_prograavanzada\\caso1\\models\\identity\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A56E96B-ECDE-4E79-AF16-1FFD3E38B7F3}|Caso1.csproj|solutionrelative:models\\identity\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,6 +35,32 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IdentityConfig.cs",
+              "DocumentMoniker": "D:\\U\\SC-601 Programacio\u0301n avanzada\\Caso1_SC_601_PrograAvanzada\\Caso1\\Models\\Identity\\IdentityConfig.cs",
+              "RelativeDocumentMoniker": "Models\\Identity\\IdentityConfig.cs",
+              "ToolTip": "D:\\U\\SC-601 Programacio\u0301n avanzada\\Caso1_SC_601_PrograAvanzada\\Caso1\\Models\\Identity\\IdentityConfig.cs",
+              "RelativeToolTip": "Models\\Identity\\IdentityConfig.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAkwD0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-21T04:14:02.879Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ApplicationUser.cs",
+              "DocumentMoniker": "D:\\U\\SC-601 Programacio\u0301n avanzada\\Caso1_SC_601_PrograAvanzada\\Caso1\\Models\\Identity\\ApplicationUser.cs",
+              "RelativeDocumentMoniker": "Models\\Identity\\ApplicationUser.cs",
+              "ToolTip": "D:\\U\\SC-601 Programacio\u0301n avanzada\\Caso1_SC_601_PrograAvanzada\\Caso1\\Models\\Identity\\ApplicationUser.cs",
+              "RelativeToolTip": "Models\\Identity\\ApplicationUser.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwBUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-21T04:13:52.1Z",
+              "EditorCaption": ""
             }
           ]
         }

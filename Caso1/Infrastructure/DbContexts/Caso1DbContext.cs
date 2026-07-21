@@ -5,16 +5,14 @@ using System.Data.Entity;
 
 namespace Caso1.Infrastructure.DbContexts
 {
-    // Ahora hereda de IdentityDbContext<ApplicationUser> en vez de DbContext.
-    // Esto agrega automáticamente las tablas de Identity (AspNetUsers,
-    // AspNetRoles, AspNetUserRoles, AspNetUserClaims, AspNetUserLogins).
+
     public class Caso1DbContext : IdentityDbContext<ApplicationUser>
     {
         public Caso1DbContext() : base("name=Caso1DB")
         {
         }
 
-        // Lo usa app.CreatePerOwinContext(Caso1DbContext.Create) en Startup.Auth.cs
+
         public static Caso1DbContext Create()
         {
             return new Caso1DbContext();
@@ -54,9 +52,7 @@ namespace Caso1.Infrastructure.DbContexts
                 .IsRequired()
                 .HasMaxLength(500);
 
-            // Una tarea puede (opcionalmente) tener un usuario dueño.
-            // Se deja opcional para no romper las tareas que ya existen
-            // en la base de datos (que no tienen usuario asignado).
+
             modelBuilder.Entity<Tarea>()
                 .HasOptional(t => t.Usuario)
                 .WithMany()

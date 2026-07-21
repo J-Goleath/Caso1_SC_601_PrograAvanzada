@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Caso1.Models.Identity
 {
-    // Hereda de IdentityUser: por eso ya trae Id, UserName, Email,
-    // PasswordHash, SecurityStamp, PhoneNumber, LockoutEnabled, etc.
-    // Aquí solo agregamos los campos propios de nuestro dominio.
+
     public class ApplicationUser : IdentityUser
     {
         [Required]
@@ -21,8 +19,7 @@ namespace Caso1.Models.Identity
 
         public bool Activo { get; set; } = true;
 
-        // Genera el "atestado" (claim) con el nombre completo del usuario
-        // y arma la identidad que se guarda en la cookie de autenticación.
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(
             UserManager<ApplicationUser> manager)
         {

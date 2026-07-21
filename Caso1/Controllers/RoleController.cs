@@ -10,10 +10,7 @@ using System.Web.Mvc;
 
 namespace Caso1.Controllers
 {
-    // Interfaz administrativa para asignar y remover roles a los
-    // usuarios (Sprint 10, tarea de Persona 1: "RoleController para
-    // asignar/remover roles" — FR-11 del Scrum Ticket).
-    // Solo el rol Administrador puede administrar roles.
+
     [Authorize(Roles = Roles.Administrador)]
     public class RoleController : Controller
     {

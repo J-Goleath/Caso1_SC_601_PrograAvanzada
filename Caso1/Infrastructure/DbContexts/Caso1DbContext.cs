@@ -1,12 +1,23 @@
 ﻿using Caso1.Models.Entities;
+using Caso1.Models.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
 namespace Caso1.Infrastructure.DbContexts
 {
-    public class Caso1DbContext : DbContext
+    // Ahora hereda de IdentityDbContext<ApplicationUser> en vez de DbContext.
+    // Esto agrega automáticamente las tablas de Identity (AspNetUsers,
+    // AspNetRoles, AspNetUserRoles, AspNetUserClaims, AspNetUserLogins).
+    public class Caso1DbContext : IdentityDbContext<ApplicationUser>
     {
         public Caso1DbContext() : base("name=Caso1DB")
         {
+        }
+
+        // Lo usa app.CreatePerOwinContext(Caso1DbContext.Create) en Startup.Auth.cs
+        public static Caso1DbContext Create()
+        {
+            return new Caso1DbContext();
         }
 
         public DbSet<Categoria> Categorias { get; set; }
@@ -16,6 +27,8 @@ namespace Caso1.Infrastructure.DbContexts
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Categoria>().ToTable("Categorias");
             modelBuilder.Entity<Prioridad>().ToTable("Prioridades");
             modelBuilder.Entity<Tarea>().ToTable("Tareas");
@@ -41,7 +54,13 @@ namespace Caso1.Infrastructure.DbContexts
                 .IsRequired()
                 .HasMaxLength(500);
 
-            base.OnModelCreating(modelBuilder);
+            // Una tarea puede (opcionalmente) tener un usuario dueño.
+            // Se deja opcional para no romper las tareas que ya existen
+            // en la base de datos (que no tienen usuario asignado).
+            modelBuilder.Entity<Tarea>()
+                .HasOptional(t => t.Usuario)
+                .WithMany()
+                .HasForeignKey(t => t.UsuarioId);
         }
     }
 }

@@ -1,0 +1,37 @@
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm(
+        "Logout",
+        "Account",
+        FormMethod.Post,
+        new { @class = "d-flex align-items-center gap-2 mb-0" }))
+    {
+        @Html.AntiForgeryToken()
+        <span class="navbar-text text-light">
+            Bienvenido, @User.Identity.Name
+        </span>
+        <button
+            type="submit"
+            class="btn btn-outline-light btn-sm">
+            Cerrar sesion
+        </button>
+    }
+}
+else
+{
+    <div class="d-flex gap-2">
+        @Html.ActionLink(
+            "Registrarse",
+            "Register",
+            "Account",
+            null,
+            new { @class = "btn btn-outline-light btn-sm" })
+
+        @Html.ActionLink(
+            "Iniciar sesion",
+            "Login",
+            "Account",
+            null,
+            new { @class = "btn btn-light btn-sm" })
+    </div>
+}

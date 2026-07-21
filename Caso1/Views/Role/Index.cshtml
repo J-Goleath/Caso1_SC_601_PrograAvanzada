@@ -1,0 +1,90 @@
+﻿@using Caso1.Models.Identity
+@model IEnumerable<ApplicationUser>
+
+@{
+    ViewBag.Title = "Usuarios y Roles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+
+    @if (TempData["MensajeExito"] != null)
+    {
+        <div id="mensajeExito" class="alert alert-success fade show">
+            @TempData["MensajeExito"]
+        </div>
+    }
+
+    @if (TempData["MensajeError"] != null)
+    {
+        <div id="mensajeError" class="alert alert-danger fade show">
+            @TempData["MensajeError"]
+        </div>
+    }
+
+    <div class="card shadow">
+        <div class="card-header bg-dark text-white">
+            Usuarios y Roles
+        </div>
+        <div class="card-body">
+            <p class="text-muted">
+                Seleccione un usuario para asignarle o removerle roles.
+                Los roles disponibles son: Administrador, Supervisor,
+                Soporte, Desarrollo y Usuario.
+            </p>
+
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Correo electrónico</th>
+                        <th>Nombre completo</th>
+                        <th>Activo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var usuario in Model)
+                    {
+                        <tr>
+                            <td>@usuario.Email</td>
+                            <td>@usuario.Nombre @usuario.Apellidos</td>
+                            <td>
+                                @if (usuario.Activo)
+                                {
+                                    <span class="badge bg-success">Sí</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">No</span>
+                                }
+                            </td>
+                            <td>
+                                @Html.ActionLink(
+                                    "Administrar roles",
+                                    "Administrar",
+                                    new { id = usuario.Id },
+                                    new { @class = "btn btn-primary btn-sm" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    function desplegarMensaje(nombreMensaje) {
+        const mensaje = document.getElementById(nombreMensaje);
+        if (mensaje) {
+            mensaje.style.transition = "opacity 1.5s";
+
+            setTimeout(function () {
+                mensaje.style.opacity = "0";
+                mensaje.remove();
+            }, 3000);
+        }
+    }
+    desplegarMensaje("mensajeExito");
+    desplegarMensaje("mensajeError");
+</script>

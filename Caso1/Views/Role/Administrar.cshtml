@@ -1,0 +1,108 @@
+﻿@using Caso1.Models.Roles
+@using System.Linq
+@model AdministrarRolesViewModel
+
+@{
+    ViewBag.Title = "Administrar Roles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+
+    @if (TempData["MensajeExito"] != null)
+    {
+        <div id="mensajeExito" class="alert alert-success fade show">
+            @TempData["MensajeExito"]
+        </div>
+    }
+
+    @if (TempData["MensajeError"] != null)
+    {
+        <div id="mensajeError" class="alert alert-danger fade show">
+            @TempData["MensajeError"]
+        </div>
+    }
+
+    <div class="card shadow">
+        <div class="card-header bg-dark text-white">
+            Roles de @Model.Email
+        </div>
+        <div class="card-body">
+
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+            <p><strong>Nombre:</strong> @Model.NombreCompleto</p>
+
+            <h5>Roles actuales</h5>
+            @if (!Model.RolesActuales.Any())
+            {
+                <p class="text-muted">Este usuario no tiene roles asignados.</p>
+            }
+            else
+            {
+                <ul class="list-group mb-4">
+                    @foreach (var rol in Model.RolesActuales)
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            @rol
+                            @using (Html.BeginForm("RemoverRol", "Role", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("usuarioId", Model.UsuarioId)
+                                @Html.Hidden("rolNombre", rol)
+                                <button type="submit" class="btn btn-outline-danger btn-sm"
+                                        onclick="return confirm('Remover el rol @rol de este usuario?')">
+                                    Remover
+                                </button>
+                            }
+                        </li>
+                    }
+                </ul>
+            }
+
+            <h5>Asignar un nuevo rol</h5>
+            @using (Html.BeginForm("AsignarRol", "Role", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("UsuarioId", Model.UsuarioId)
+
+                <div class="row g-2">
+                    <div class="col-md-6">
+                        @Html.DropDownListFor(
+                            m => m.RolSeleccionado,
+                            Model.RolesDisponibles,
+                            "-- Seleccione un rol --",
+                            new { @class = "form-select" })
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-primary">
+                            Asignar rol
+                        </button>
+                    </div>
+                </div>
+            }
+
+            @Html.ActionLink(
+                "Volver al listado",
+                "Index",
+                null,
+                new { @class = "btn btn-secondary mt-4" })
+        </div>
+    </div>
+</div>
+
+<script>
+    function desplegarMensaje(nombreMensaje) {
+        const mensaje = document.getElementById(nombreMensaje);
+        if (mensaje) {
+            mensaje.style.transition = "opacity 1.5s";
+
+            setTimeout(function () {
+                mensaje.style.opacity = "0";
+                mensaje.remove();
+            }, 3000);
+        }
+    }
+    desplegarMensaje("mensajeExito");
+    desplegarMensaje("mensajeError");
+</script>

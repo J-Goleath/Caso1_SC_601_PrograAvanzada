@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>@ViewBag.Title - Mi aplicacion ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -23,7 +23,12 @@
                     <li>@Html.ActionLink("Categorias", "Index", "Categorias", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Prioridades", "Index", "Prioridades", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Estados", "Index", "Estados", new { area = "" }, new { @class = "nav-link" })</li>
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        <li>@Html.ActionLink("Usuarios y Roles", "Index", "Role", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
                 </ul>
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </nav>

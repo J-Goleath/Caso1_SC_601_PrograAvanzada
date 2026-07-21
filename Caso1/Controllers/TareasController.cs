@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace Caso1.Controllers
 {
+    [Authorize]
     public class TareasController : BaseController
     {
         private readonly ITareaRepository _tareaRepository;

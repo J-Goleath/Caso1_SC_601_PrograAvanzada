@@ -1,10 +1,11 @@
 ﻿using Caso1.Common;
-using Caso1.Models.DTOs;
-using Caso1.Models.Entities;
 using Caso1.Extensions;
+using Caso1.Filters;
 using Caso1.Infrastructure.DbContexts;
 using Caso1.Infrastructure.Repositories;
 using Caso1.Logging;
+using Caso1.Models.DTOs;
+using Caso1.Models.Entities;
 using Caso1.Validators;
 using System;
 using System.Web.Mvc;
@@ -12,6 +13,8 @@ using System.Web.Mvc;
 namespace Caso1.Controllers
 {
     [Authorize]
+    [CustomAuthenticationFilter]
+    [ApplicationInfoResultFilter]
     public class TareasController : BaseController
     {
         private readonly ITareaRepository _tareaRepository;
@@ -22,11 +25,12 @@ namespace Caso1.Controllers
             _tareaRepository = new TareaRepository(context);
         }
 
+        [ActionName("Listado")]
         public ActionResult Index()
         {
             AppLogger.Info("Acceso al listado de tareas");
             var tareas = _tareaRepository.Find(t => !t.Borrado);
-            return View(tareas);
+            return View("Index", tareas);
         }
 
         public ActionResult Details(int id)
@@ -66,7 +70,7 @@ namespace Caso1.Controllers
                 _tareaRepository.Add(tarea);
                 AppLogger.Info("Tarea creada correctamente: {Titulo}", tarea.Titulo);
                 TempData["Exito"] = "Tarea creada correctamente.";
-                return RedirectToAction("Index");
+                return RedirectToAction("Listado");
             }
             catch (Exception ex)
             {
@@ -117,7 +121,7 @@ namespace Caso1.Controllers
                 _tareaRepository.Update(tarea);
                 AppLogger.Info("Tarea actualizada correctamente: {Titulo}", tarea.Titulo);
                 TempData["Exito"] = "Tarea actualizada correctamente.";
-                return RedirectToAction("Index");
+                return RedirectToAction("Listado");
             }
             catch (Exception ex)
             {
@@ -157,7 +161,7 @@ namespace Caso1.Controllers
                 AppLogger.Error(ex, "Error al eliminar la tarea ID {Id}", id);
                 TempData["Error"] = "Ocurrió un error al eliminar la tarea.";
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Listado");
         }
     }
 }

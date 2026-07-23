@@ -16,7 +16,7 @@ namespace Caso1
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Tareas", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Tareas", action = "Listado", id = UrlParameter.Optional }
             );
         }
     }

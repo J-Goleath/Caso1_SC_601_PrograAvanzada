@@ -239,6 +239,8 @@
     <Compile Include="Validators\CrearTareaValidator.cs" />
     <Compile Include="Validators\EditarTareaValidator.cs" />
     <Compile Include="Filters\AuditFilter.cs" />
+    <Compile Include="Filters\ApplicationInfoResultFilter.cs" />
+    <Compile Include="Filters\CustomAuthenticationFilter.cs" />
     <Compile Include="Filters\GlobalExceptionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

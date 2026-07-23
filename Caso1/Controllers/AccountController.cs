@@ -97,7 +97,7 @@ namespace Caso1.Controllers
                     rememberBrowser: false);
 
                 return RedirectToAction(
-                    "Index",
+                    "Listado",
                     "Tareas");
             }
 
@@ -190,7 +190,7 @@ namespace Caso1.Controllers
             }
 
             return RedirectToAction(
-                "Index",
+                "Listado",
                 "Tareas");
         }
 

@@ -19,7 +19,7 @@
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Tareas", "Index", "Tareas", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Tareas", "Listado", "Tareas", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Categorias", "Index", "Categorias", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Prioridades", "Index", "Prioridades", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Estados", "Index", "Estados", new { area = "" }, new { @class = "nav-link" })</li>
@@ -32,6 +32,32 @@
             </div>
         </div>
     </nav>
+
+    @if (User.Identity.IsAuthenticated && ViewBag.CurrentUser != null)
+    {
+        <div class="container mt-3">
+            <div class="alert alert-light border">
+                <div class="row">
+                    <div class="col-md-3">
+                        <strong>Usuario:</strong> @ViewBag.CurrentUser
+                    </div>
+                    <div class="col-md-3">
+                        <strong>Fecha:</strong> @ViewBag.CurrentDate
+                    </div>
+                    <div class="col-md-2">
+                        <strong>Versión:</strong> @ViewBag.ApplicationVersion
+                    </div>
+                    <div class="col-md-2">
+                        <strong>Ambiente:</strong> @ViewBag.EnvironmentName
+                    </div>
+                    <div class="col-md-2">
+                        <strong>Servidor:</strong> @ViewBag.ServerName
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
     <div class="container body-content">
         @RenderBody()
         <hr />

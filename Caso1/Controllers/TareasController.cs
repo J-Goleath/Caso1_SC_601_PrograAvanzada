@@ -5,8 +5,8 @@ using Caso1.Infrastructure.DbContexts;
 using Caso1.Infrastructure.Repositories;
 using Caso1.Logging;
 using Caso1.Models.DTOs;
-using Caso1.Models.Entities;
-using Caso1.Validators;
+using Caso1.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Web.Mvc;
 
@@ -17,29 +17,32 @@ namespace Caso1.Controllers
     [ApplicationInfoResultFilter]
     public class TareasController : BaseController
     {
-        private readonly ITareaRepository _tareaRepository;
+        private readonly ITareaService _tareaService;
 
         public TareasController()
         {
             var context = new Caso1DbContext();
-            _tareaRepository = new TareaRepository(context);
+            var tareaRepository = new TareaRepository(context);
+            _tareaService = new TareaService(tareaRepository);
         }
 
         [ActionName("Listado")]
         public ActionResult Index()
         {
             AppLogger.Info("Acceso al listado de tareas");
-            var tareas = _tareaRepository.Find(t => !t.Borrado);
-            return View("Index", tareas);
+            var resultado = _tareaService.Listar(User.Identity.GetUserId(), User);
+            return View("Index", resultado.Data);
         }
 
         public ActionResult Details(int id)
         {
             AppLogger.Info("Acceso al detalle de la tarea ID {Id}", id);
-            var tarea = _tareaRepository.GetById(id);
-            if (tarea == null || tarea.Borrado)
+            var resultado = _tareaService.ObtenerPorId(id, User.Identity.GetUserId(), User);
+
+            if (!resultado.Success)
                 return HttpNotFound();
-            return View(tarea);
+
+            return View(resultado.Data);
         }
 
         public ActionResult Create()
@@ -52,42 +55,34 @@ namespace Caso1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CrearTareaDto dto)
         {
-            if (!ValidateDto(dto, new CrearTareaValidator()))
+            if (!ValidateDto(dto, new Validators.CrearTareaValidator()))
             {
                 return View(dto);
             }
 
-            try
-            {
-                var tarea = new Tarea
-                {
-                    Titulo = dto.Titulo,
-                    Detalle = dto.Detalle,
-                    FechaHora = DateTime.Now,
-                    Estado = EstadoTarea.Pendiente
-                };
+            var resultado = _tareaService.Crear(dto, User.Identity.GetUserId());
 
-                _tareaRepository.Add(tarea);
-                AppLogger.Info("Tarea creada correctamente: {Titulo}", tarea.Titulo);
-                TempData["Exito"] = "Tarea creada correctamente.";
+            if (resultado.Success)
+            {
+                AppLogger.Info("Tarea creada correctamente: {Titulo}", dto.Titulo);
+                TempData["Exito"] = resultado.Message;
                 return RedirectToAction("Listado");
             }
-            catch (Exception ex)
-            {
-                AppLogger.Error(ex, "Error al crear la tarea");
-                TempData["Error"] = "Ocurrió un error al guardar la tarea.";
-            }
 
+            AppLogger.Error(null, "Error al crear la tarea: {Mensaje}", resultado.Message);
+            TempData["Error"] = resultado.Message;
             return View(dto);
         }
 
         public ActionResult Edit(int id)
         {
             AppLogger.Info("Acceso a edicion de tarea ID {Id}", id);
-            var tarea = _tareaRepository.GetById(id);
-            if (tarea == null || tarea.Borrado)
+            var resultado = _tareaService.ObtenerPorId(id, User.Identity.GetUserId(), User);
+
+            if (!resultado.Success)
                 return HttpNotFound();
 
+            var tarea = resultado.Data;
             var dto = new EditarTareaDto
             {
                 Id = tarea.Id,
@@ -103,64 +98,53 @@ namespace Caso1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditarTareaDto dto)
         {
-            if (!ValidateDto(dto, new EditarTareaValidator()))
+            if (!ValidateDto(dto, new Validators.EditarTareaValidator()))
             {
                 return View(dto);
             }
 
-            try
+            var resultado = _tareaService.Editar(dto, User.Identity.GetUserId(), User);
+
+            if (resultado.Success)
             {
-                var tarea = _tareaRepository.GetById(dto.Id);
-                if (tarea == null || tarea.Borrado)
-                    return HttpNotFound();
-
-                tarea.Titulo = dto.Titulo;
-                tarea.Detalle = dto.Detalle;
-                tarea.Estado = dto.Estado.ToEstado();
-
-                _tareaRepository.Update(tarea);
-                AppLogger.Info("Tarea actualizada correctamente: {Titulo}", tarea.Titulo);
-                TempData["Exito"] = "Tarea actualizada correctamente.";
+                AppLogger.Info("Tarea actualizada correctamente: {Titulo}", dto.Titulo);
+                TempData["Exito"] = resultado.Message;
                 return RedirectToAction("Listado");
             }
-            catch (Exception ex)
-            {
-                AppLogger.Error(ex, "Error al actualizar la tarea");
-                TempData["Error"] = "Ocurrió un error al actualizar la tarea.";
-            }
 
+            AppLogger.Error(null, "Error al actualizar la tarea: {Mensaje}", resultado.Message);
+            TempData["Error"] = resultado.Message;
             return View(dto);
         }
 
         public ActionResult Delete(int id)
         {
             AppLogger.Info("Acceso a eliminación de tarea ID {Id}", id);
-            var tarea = _tareaRepository.GetById(id);
-            if (tarea == null || tarea.Borrado)
+            var resultado = _tareaService.ObtenerPorId(id, User.Identity.GetUserId(), User);
+
+            if (!resultado.Success)
                 return HttpNotFound();
-            return View(tarea);
+
+            return View(resultado.Data);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                var tarea = _tareaRepository.GetById(id);
-                if (tarea == null || tarea.Borrado)
-                    return HttpNotFound();
+            var resultado = _tareaService.Eliminar(id, User.Identity.GetUserId(), User);
 
-                tarea.Borrado = true;
-                _tareaRepository.Update(tarea);
-                AppLogger.Info("Tarea eliminada correctamente ID {Id}", id);
-                TempData["Exito"] = "Tarea eliminada correctamente.";
-            }
-            catch (Exception ex)
+            if (resultado.Success)
             {
-                AppLogger.Error(ex, "Error al eliminar la tarea ID {Id}", id);
-                TempData["Error"] = "Ocurrió un error al eliminar la tarea.";
+                AppLogger.Info("Tarea eliminada correctamente ID {Id}", id);
+                TempData["Exito"] = resultado.Message;
             }
+            else
+            {
+                AppLogger.Error(null, "Error al eliminar la tarea ID {Id}: {Mensaje}", id, resultado.Message);
+                TempData["Error"] = resultado.Message;
+            }
+
             return RedirectToAction("Listado");
         }
     }

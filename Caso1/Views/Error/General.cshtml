@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm">
+
+        <div class="card-header bg-danger text-white">
+            <h4 class="mb-0">Error</h4>
+        </div>
+
+        <div class="card-body">
+
+            <div class="alert alert-danger">
+                Se presentó un inconveniente al procesar la solicitud.
+            </div>
+
+            <p>
+                Regrese al inicio o intente nuevamente.
+            </p>
+
+            @Html.ActionLink("Volver al inicio", "Index", "Home", null, new { @class = "btn btn-secondary" })
+
+        </div>
+
+    </div>
+
+</div>

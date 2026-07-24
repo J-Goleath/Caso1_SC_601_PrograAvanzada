@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Error interno del servidor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm">
+
+        <div class="card-header bg-danger text-white">
+            <h4 class="mb-0">Error interno del servidor</h4>
+        </div>
+
+        <div class="card-body">
+
+            <div class="alert alert-danger">
+                Ocurrió un error inesperado en el sistema.
+            </div>
+
+            <p>
+                Intente nuevamente más tarde. Si el problema continúa, comuníquese con soporte.
+            </p>
+
+            @Html.ActionLink("Volver al inicio", "Index", "Home", null, new { @class = "btn btn-secondary" })
+
+        </div>
+
+    </div>
+
+</div>

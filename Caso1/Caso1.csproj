@@ -192,7 +192,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+<<<<<<< HEAD
+    <Compile Include="Controllers\ErrorController.cs" />
+=======
     <Compile Include="Infrastructure\Results\OperationResult.cs" />
+>>>>>>> origin/main
     <Compile Include="Migrations\202607210310469_AgregarIdentity.cs" />
     <Compile Include="Migrations\202607210310469_AgregarIdentity.Designer.cs">
       <DependentUpon>202607210310469_AgregarIdentity.cs</DependentUpon>
@@ -201,8 +205,12 @@
     <Compile Include="Migrations\202607210403232_AgregarRolCompartidoATareas.Designer.cs">
       <DependentUpon>202607210403232_AgregarRolCompartidoATareas.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+    <Compile Include="Middleware\GlobalExceptionMiddleware.cs" />
+=======
     <Compile Include="Services\ITareaService.cs" />
     <Compile Include="Services\TareaService.cs" />
+>>>>>>> origin/main
     <Compile Include="Startup.cs" />
     <Compile Include="Common\EstadoTarea.cs" />
     <Compile Include="Common\Roles.cs" />
@@ -232,7 +240,6 @@
     <Compile Include="Models\Entities\Tarea.cs" />
     <Compile Include="Models\Roles\AdministrarRolesViewModel.cs" />
     <Compile Include="Extensions\EstadoTareaExtension.cs" />
-    <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="Validators\CrearCategoriaValidator.cs" />
     <Compile Include="Validators\EditarCategoriaValidator.cs" />
     <Compile Include="Validators\CrearPrioridadValidator.cs" />
@@ -1212,9 +1219,14 @@
     <Content Include="Views\Estados\Index.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Role\Administrar.cshtml" />
+    <Content Include="Views\Error\Forbidden.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\ServerError.cshtml" />
+    <Content Include="Views\Error\General.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="obj\Debug\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202606222229133_AddCategoriasTable.resx">

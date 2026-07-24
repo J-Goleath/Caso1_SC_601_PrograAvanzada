@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Acceso denegado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm">
+
+        <div class="card-header bg-warning">
+            <h4 class="mb-0">Acceso denegado</h4>
+        </div>
+
+        <div class="card-body">
+
+            <div class="alert alert-warning">
+                No tiene permisos para acceder a esta sección del sistema.
+            </div>
+
+            <p>
+                Si considera que esto es un error, comuníquese con el administrador del sistema.
+            </p>
+
+            @Html.ActionLink("Volver al inicio", "Index", "Home", null, new { @class = "btn btn-secondary" })
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Página no encontrada";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm">
+
+        <div class="card-header bg-info text-white">
+            <h4 class="mb-0">Página no encontrada</h4>
+        </div>
+
+        <div class="card-body">
+
+            <div class="alert alert-info">
+                La página o recurso solicitado no existe o fue movido.
+            </div>
+
+            <p>
+                Verifique la dirección ingresada o regrese al inicio del sistema.
+            </p>
+
+            @Html.ActionLink("Volver al inicio", "Index", "Home", null, new { @class = "btn btn-secondary" })
+
+        </div>
+
+    </div>
+
+</div>
